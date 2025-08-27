@@ -4,7 +4,7 @@ import { HashLink } from 'react-router-hash-link';
 import AppImage from '../AppImage';
 import Icon from '../AppIcon';
 import Button from './Button';
-import VeenusLogo from './assets/images/Veenus_nova_logo.jpg';
+import VeenusLogo from '../../assets/images/Veenus_nova_logo.jpg';
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isNavigationExpanded, setIsNavigationExpanded] = useState(false);
