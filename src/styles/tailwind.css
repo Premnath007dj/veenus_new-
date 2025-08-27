@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core Colors - Unique Electric Blue & Copper Theme */
+    --color-background: #FDFEFE; /* Cool white */
+    --color-foreground: #0F172A; /* slate-900 */
+    --color-border: #E1E7FF; /* blue-50 */
+    --color-input: #FFFFFF; /* white */
+    --color-ring: #0EA5E9; /* sky-500 */
+    
+    /* Card Colors */
+    --color-card: #FFFFFF; /* white */
+    --color-card-foreground: #0F172A; /* slate-900 */
+    
+    /* Popover Colors */
+    --color-popover: #FFFFFF; /* white */
+    --color-popover-foreground: #0F172A; /* slate-900 */
+    
+    /* Muted Colors */
+    --color-muted: #F8FAFC; /* slate-50 */
+    --color-muted-foreground: #64748B; /* slate-500 */
+    
+    /* Primary Colors - Electric Blue */
+    --color-primary: #0EA5E9; /* sky-500 */
+    --color-primary-foreground: #FFFFFF; /* white */
+    
+    /* Secondary Colors */
+    --color-secondary: #1E293B; /* slate-800 */
+    --color-secondary-foreground: #FFFFFF; /* white */
+    
+    /* Accent Colors - Copper Orange */
+    --color-accent: #F97316; /* orange-500 */
+    --color-accent-foreground: #FFFFFF; /* white */
+    
+    /* Success Colors */
+    --color-success: #10B981; /* emerald-500 */
+    --color-success-foreground: #FFFFFF; /* white */
+    
+    /* Warning Colors */
+    --color-warning: #F59E0B; /* amber-500 */
+    --color-warning-foreground: #FFFFFF; /* white */
+    
+    /* Error/Destructive Colors */
+    --color-error: #EF4444; /* red-500 */
+    --color-error-foreground: #FFFFFF; /* white */
+    --color-destructive: #EF4444; /* red-500 */
+    --color-destructive-foreground: #FFFFFF; /* white */
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+  }
+  
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .shadow-elevation {
+    box-shadow: 0 8px 25px -3px rgba(14, 165, 233, 0.1), 0 4px 6px -2px rgba(14, 165, 233, 0.05);
+  }
+  
+  .shadow-elevation-hover {
+    box-shadow: 0 20px 40px -3px rgba(14, 165, 233, 0.15), 0 8px 16px -4px rgba(14, 165, 233, 0.1);
+  }
+  
+  .shadow-glass {
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  
+  .transition-elevation {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .gradient-mesh {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%);
+  }
+  
+  .border-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, rgba(14, 165, 233, 0.3), rgba(249, 115, 22, 0.3)) border-box;
+  }
+}
+
+@layer utilities {
+  .bg-grid-electric {
+    background-image: radial-gradient(circle at 2px 2px, rgba(14, 165, 233, 0.15) 2px, transparent 0);
+    background-size: 40px 40px;
+  }
+  
+  .bg-circuit-pattern {
+    background-image: 
+      linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px),
+      linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, #0EA5E9, #F97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  .magnetic-hover {
+    transition: transform 0.3s ease;
+  }
+  
+  .magnetic-hover:hover {
+    transform: scale(1.05) translateY(-5px);
+  }
+}
