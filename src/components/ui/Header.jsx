@@ -75,7 +75,8 @@ const Header = () => {
     {/* Logo */}
     <div className="w-20 h-20 flex items-center justify-center">
       <AppImage
-        src="/assets/images/Veenus_nova_logo.jpg"
+        // src="/assets/images/Veenus_nova_logo.jpg"
+        src={`${process.env.PUBLIC_URL}/assets/images/Veenus_nova_logo.jpg`}
         alt="Veenus Nova"
         className="w-19 h-19 object-contain"
       />
@@ -169,7 +170,8 @@ const Header = () => {
               {/* Logo with sandal background */}
                   <div className="w-12 h-12 flex items-center justify-center bg-[#fff3db] rounded-xl shadow-md border border-gray-300">
                     <AppImage 
-                      src="/assets/images/Veenus_nova_logo.jpg" 
+                      // src="/assets/images/Veenus_nova_logo.jpg" 
+                      src={`${process.env.PUBLIC_URL}/assets/images/Veenus_nova_logo.jpg`}
                       alt="Veenus Nova" 
                       className="w-10 h-10 object-contain"
                     />
