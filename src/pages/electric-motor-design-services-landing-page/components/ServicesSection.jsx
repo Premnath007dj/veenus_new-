@@ -2,252 +2,167 @@ import React, { useState } from 'react';
 import Icon from '../../../components/AppIcon';
 
 const ServicesSection = () => {
-  const [hoveredService, setHoveredService] = useState(null);
+  const [expandedCard, setExpandedCard] = useState(null);
 
-  const serviceCategories = [
+  const services = [
     {
-      title: "Design & Development",
-      description: "From concept to prototype with cutting-edge engineering",
-      color: "from-primary to-primary/80",
+      id: 'engineering',
+      title: 'Engineering Services',
+      icon: 'Settings',
+      color: 'from-primary-500 to-primary-600',
+      bgColor: 'from-primary-50 to-primary-100',
       services: [
         {
-          id: 1,
-          icon: "Settings",
-          title: "Motor Design & Development",
-          description: "Complete motor design from concept to prototype with advanced electromagnetic simulation.",
-          features: ["3D Modeling & FEA Analysis: Precision layouts tailored for manufacturability", "Prototype Development: Rapid prototyping – up to 5 sample units for validation.", "Application Focus: Automotive (seat motors, steering, E-rickshaw propulsion), domestic (fans, pumps, appliances), and industrial (lift actuators, defence, textile)"]
+          name: 'Product Benchmarking',
+          description: 'Methodical, three-step process delivering actionable insights for product enhancement and cost–performance optimization.',
+          details: 'Our structured approach includes competitive analysis, performance metrics evaluation, and actionable recommendations for improvement.'
         },
         {
-          id: 2,
-          icon: "Cpu",
-          title: "Control System Integration",
-          description: "Advanced motor control algorithms and power electronics integration.",
-          features: ["FOC Control", "Sensorless Operation", "Real-time Monitoring Benefit from customized control strategies ensuring peak efficiency and reliability.   "]
+          name: 'Electromagnetic Simulation',
+          description: 'Analyze electric machines with magnetic flux density plots and thermal analysis to validate and optimize designs early.',
+          details: 'Advanced FEA simulations including magnetic field analysis, thermal modeling, and performance prediction for electric motors.'
         },
         {
-          id: 3,
-          icon: "Target",
-          title: "Custom Motor Solutions",
-          description: "Tailored motor designs for unique performance requirements.",
-          features: ["Bespoke Design", "Application-Specific: Solutions for automotive actuators, household appliances, industrial machinery, agricultural tools, defence-grade systems, drones, and more.", "Performance Optimized: Motors designed for high reliability, efficiency, cost-effectiveness, and alignment between simulation and real-world results."]
+          name: 'Product Design & Development',
+          description: 'End-to-end motor development from RFQ to prototype delivery, integrating electromagnetic, mechanical, and thermal considerations.',
+          details: 'Complete motor design lifecycle from concept to prototype, including mechanical design, electromagnetic optimization, and thermal management.'
+        },
+        {
+          name: 'Technical Documentation',
+          description: 'Thorough documentation including a design input sheet and a product development time plan.',
+          details: 'Comprehensive technical documentation including design specifications, manufacturing guidelines, and validation procedures.'
         }
       ]
     },
     {
-      title: "Analysis & Optimization",
-      description: "Advanced simulation and performance enhancement",
-      color: "from-accent to-accent/80",
+      id: 'software',
+      title: 'Software Solutions',
+      icon: 'Cpu',
+      color: 'from-accent-500 to-accent-600',
+      bgColor: 'from-accent-50 to-accent-100',
       services: [
         {
-          id: 4,
-          icon: "BarChart3",
-          title: "Electromagnetic Analysis",
-          description: "Comprehensive FEA analysis for magnetic field distribution and losses.",
-          features: ["Maxwell Simulation", "Harmonic Analysis", "Loss Calculation","Back EMF and Speed-Torque Characteristic Validation"]
-        },
-        {
-          id: 5,
-          icon: "Zap",
-          title: "Performance Optimization",
-          description: "Enhance efficiency, torque density, and power output optimization.",
-          features: ["Multi-Objective Optimization:", "Real-time Tuning"]
-        },
-        {
-          id: 6,
-          icon: "Layers",
-          title: "Multi-Physics Simulation",
-          description: "Integrated electromagnetic, thermal, and mechanical simulation.",
-          features: ["Coupled Analysis", "Stress Testing", "Vibration Modeling"]
-        }
-      ]
-    },
-    {
-      title: "Testing & Validation",
-      description: "Comprehensive testing and quality assurance",
-      color: "from-success to-success/80",
-      services: [
-        {
-          id: 7,
-          icon: "Activity",
-          title: "Vibration & NVH Analysis",
-          description: "Advanced noise, vibration, and harshness analysis with mitigation.",
-          features: ["Modal Analysis", "Acoustic Testing", "Mitigation Strategies"]
-        },
-        {
-          id: 8,
-          icon: "Shield",
-          title: "Motor Testing & Validation",
-          description: "Comprehensive testing protocols and environmental validation.",
-          features: ["Performance Testing", "Endurance Testing", "Environmental"]
-        },
-        {
-          id: 9,
-          icon: "CheckCircle",
-          title: "Quality Assurance",
-          description: "Rigorous quality control and international standards compliance.",
-          features: ["ISO Compliance", "Reliability Testing", "Documentation"]
-        }
-      ]
-    },
-    {
-      title: "Support & Manufacturing",
-      description: "Production support and technical consultation",
-      color: "from-warning to-warning/80",
-      services: [
-        {
-          id: 10,
-          icon: "Wrench",
-          title: "Manufacturing Support",
-          description: "Production-ready design optimization and process consultation.",
-          features: ["DFM Analysis", "Process Optimization", "Quality Control"]
-        },
-        {
-          id: 11,
-          icon: "Users",
-          title: " Consultation",
-          description: "technical consultation services.",
-          features: ["Design Input Consulting","Product Benchmarking & Teardown Analysis", "Knowledge Transfer"]
-        },
-        {
-          id: 12,
-          icon: "FileText",
-          title: "Technical Documentation",
-          description: "Comprehensive reports, specifications, and manufacturing docs.",
-          features: ["Design Documents", "Test Reports", "Manufacturing Specs"]
+          name: 'Web & App Development',
+          description: 'We create custom websites and applications based on customer requirements.',
+          details: 'Full-stack development services including responsive web design, mobile applications, and custom software solutions tailored to your needs.'
         }
       ]
     }
   ];
 
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      const headerHeight = 80;
+      const elementPosition = contactSection.offsetTop - headerHeight;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
-    <section id="services" className="py-24 bg-gradient-to-b from-background to-muted/30">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Enhanced Section Header */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center space-x-2 bg-primary/10 rounded-full px-6 py-3 mb-6">
-            <Icon name="Zap" size={20} className="text-primary" />
-            <span className="text-sm font-semibold text-primary">Our Expertise</span>
+    <section id="services" className="py-24 bg-gradient-to-b from-background via-primary-50/30 to-accent-50/30 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-50/10 to-accent-50/10"></div>
+      <div className="absolute top-20 right-20 w-32 h-32 bg-primary-200/20 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute bottom-20 left-20 w-24 h-24 bg-accent-200/20 rounded-full blur-2xl animate-pulse-slow"></div>
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-100 to-accent-100 border border-primary-200 rounded-full px-6 py-3 mb-6 shadow-lg">
+            <Icon name="Zap" size={20} className="text-primary-600" />
+            <span className="text-sm font-semibold text-primary-700">Our Services</span>
           </div>
-          
-          <h2 className="text-5xl lg:text-6xl font-bold text-foreground mb-8">
-            <span className="text-gradient">Comprehensive</span> Motor
-            <br />Engineering Services
+          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            <span className="gradient-text">Services</span>
           </h2>
-          
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            From initial concept through production support, we deliver end-to-end electric motor 
-            engineering solutions that exceed performance expectations and drive innovation forward.
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            A detailed breakdown of our offerings across Engineering Services and Software Solutions.
           </p>
         </div>
 
-        {/* Service Categories */}
-        <div className="space-y-16">
-          {serviceCategories?.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="relative">
-              {/* Category Header */}
-              <div className="text-center mb-12">
-                <h3 className="text-3xl font-bold text-foreground mb-4">{category?.title}</h3>
-                <p className="text-lg text-muted-foreground">{category?.description}</p>
+        <div className="grid lg:grid-cols-2 gap-12">
+          {services.map((category) => (
+            <div key={category.id} className="space-y-8">
+              <div className="text-center mb-8">
+                <div className={`w-20 h-20 bg-gradient-to-br ${category.color} rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl`}>
+                  <Icon name={category.icon} size={32} className="text-white" />
+                </div>
+                <h3 className="text-3xl font-bold text-foreground mb-2">{category.title}</h3>
+                <div className="w-16 h-1 bg-gradient-to-r from-primary-500 to-accent-500 mx-auto rounded-full"></div>
               </div>
-
-              {/* Services Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {category?.services?.map((service) => (
-                  <div 
-                    key={service?.id}
-                    className="group relative bg-white/80 backdrop-blur-sm border border-border/50 rounded-3xl p-8 shadow-glass hover:shadow-elevation-hover transition-all duration-500 magnetic-hover"
-                    onMouseEnter={() => setHoveredService(service?.id)}
-                    onMouseLeave={() => setHoveredService(null)}
+              
+              <div className="space-y-6">
+                {category.services.map((service, index) => (
+                  <div
+                    key={index}
+                    className={`bg-white/80 backdrop-blur-sm border border-primary-100 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-500 cursor-pointer overflow-hidden group ${
+                      expandedCard === `${category.id}-${index}` 
+                        ? 'ring-2 ring-primary-300 shadow-2xl scale-[1.02]' 
+                        : 'hover:shadow-xl hover:border-primary-200 hover:scale-[1.01]'
+                    }`}
+                    onClick={() => setExpandedCard(expandedCard === `${category.id}-${index}` ? null : `${category.id}-${index}`)}
                   >
-                    {/* Service Icon */}
-                    <div className={`relative w-16 h-16 bg-gradient-to-br ${category?.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon 
-                        name={service?.icon} 
-                        size={28} 
-                        className="text-white drop-shadow-sm" 
-                      />
-                      
-                      {/* Pulse effect on hover */}
-                      {hoveredService === service?.id && (
-                        <div className={`absolute inset-0 bg-gradient-to-br ${category?.color} rounded-2xl animate-ping opacity-20`}></div>
-                      )}
-                    </div>
-
-                    {/* Service Content */}
-                    <div className="space-y-4">
-                      <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-                        {service?.title}
-                      </h4>
-                      
-                      <p className="text-muted-foreground leading-relaxed">
-                        {service?.description}
-                      </p>
-
-                      {/* Features List */}
-                      <div className="space-y-2">
-                        {service?.features?.map((feature, featureIndex) => (
-                          <div key={featureIndex} className="flex items-start space-x-3">
-                              {/* The bullet should not shrink */}
-                              <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0 mt-2"></div>
-                              
-                              {/* The text should grow and wrap correctly */}
-                              <span className="text-sm text-muted-foreground font-medium">{feature}</span>
-                            </div>
-                        ))}
+                    <div className="p-8">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <h4 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary-600 transition-colors duration-300">
+                            {service.name}
+                          </h4>
+                          <p className="text-muted-foreground text-base leading-relaxed">{service.description}</p>
+                        </div>
+                        <div className={`ml-6 transition-all duration-300 ${
+                          expandedCard === `${category.id}-${index}` ? 'rotate-180 scale-110' : 'group-hover:scale-110'
+                        }`}>
+                          <div className="w-10 h-10 bg-gradient-to-br from-primary-100 to-accent-100 rounded-full flex items-center justify-center">
+                            <Icon name="ChevronDown" size={20} className="text-primary-600" />
+                          </div>
+                        </div>
                       </div>
-
-                      {/* Learn More Button */}
-                      <div className="pt-4">
-                        <button className="flex items-center space-x-2 text-primary hover:text-accent transition-colors duration-300 font-semibold group">
-                          <span>Learn More</span>
-                          <Icon name="ArrowRight" size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
-                        </button>
+                      
+                      {/* Expanded Content */}
+                      <div className={`mt-6 transition-all duration-500 ease-in-out ${
+                        expandedCard === `${category.id}-${index}` 
+                          ? 'max-h-96 opacity-100' 
+                          : 'max-h-0 opacity-0 overflow-hidden'
+                      }`}>
+                        <div className="pt-6 border-t border-primary-200/50">
+                          <p className="text-muted-foreground text-base leading-relaxed mb-6">{service.details}</p>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              scrollToContact();
+                            }}
+                            className="inline-flex items-center space-x-3 bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/25 group"
+                          >
+                            <span>Learn More</span>
+                            <Icon name="ArrowRight" size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
+                          </button>
+                        </div>
                       </div>
                     </div>
-
-                    {/* Gradient Overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${category?.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity duration-300`}></div>
                   </div>
                 ))}
               </div>
             </div>
           ))}
         </div>
-
+        
         {/* Call to Action */}
-        <div className="mt-20 bg-gradient-to-br from-primary via-primary/90 to-accent text-white rounded-3xl p-12 text-center relative overflow-hidden">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 bg-grid-electric opacity-10"></div>
-          
-          <div className="relative z-10">
-            <Icon name="Lightbulb" size={64} className="mx-auto mb-6 opacity-90" />
-            
-            <h3 className="text-3xl lg:text-4xl font-bold mb-6">
-              Ready to Revolutionize Your Motor Design?
-            </h3>
-            
-            <p className="text-xl opacity-90 mb-8 max-w-3xl mx-auto">
-              Join hundreds of satisfied clients who have transformed their products with our 
-              innovative motor engineering solutions.
+        <div className="mt-20 text-center">
+          <div className="bg-gradient-to-r from-primary-50 to-accent-50 border border-primary-200 rounded-3xl p-12 shadow-xl">
+            <h3 className="text-3xl font-bold text-foreground mb-4">Ready to Get Started?</h3>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Let's discuss how our engineering and software solutions can power your next innovation project.
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <button className="bg-white text-primary hover:bg-white/90 px-8 py-4 rounded-xl font-semibold transition-all duration-300 magnetic-hover flex items-center space-x-2">
-                <Icon name="Phone" size={20} />
-                <span>Free Consultation</span>
-              </button>
-              
-              <div className="flex items-center space-x-6">
-                <div className="flex items-center space-x-2 bg-white/10 rounded-lg px-4 py-2">
-                  <Icon name="Clock" size={18} />
-                  <span>24-48h Response</span>
-                </div>
-                <div className="flex items-center space-x-2 bg-white/10 rounded-lg px-4 py-2">
-                  <Icon name="FileText" size={18} />
-                  <span>Detailed Proposal</span>
-                </div>
-              </div>
-            </div>
+            <button
+              onClick={scrollToContact}
+              className="bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/25 hover:scale-105"
+            >
+              Start Your Project
+            </button>
           </div>
         </div>
       </div>

@@ -70,29 +70,31 @@ const ElectricMotorDesignServicesLandingPage = () => {
   return (
     <>
       <Helmet>
-        <title>ElectroMotor Pro - Revolutionary Electric Motor Design & Engineering Solutions</title>
+        <title>Veenus Nova Innovation Centre - Engineering & Software Solutions</title>
         <meta 
           name="description" 
-          content="Transform your electric motor concepts into reality with our cutting-edge design, optimization, and engineering services. Specializing in PMSM, BLDC, SynRM motors for automotive, aerospace, and industrial applications." 
+          content="Leading engineering and software company specializing in electric motor design, simulation, and development solutions. From motors to apps, we power your innovation." 
         />
         <meta 
           name="keywords" 
-          content="electric motor design, motor optimization, PMSM, BLDC, SynRM, electromagnetic simulation, thermal analysis, motor engineering, EV motors, industrial motors" 
+          content="electric motor design, motor optimization, PMSM, BLDC, SynRM, electromagnetic simulation, thermal analysis, motor engineering, software development, web apps" 
         />
-        <meta name="author" content="ElectroMotor Pro" />
-        <meta property="og:title" content="ElectroMotor Pro - Revolutionary Electric Motor Design Solutions" />
+        <meta name="author" content="Veenus Nova Innovation Centre" />
+        <meta property="og:title" content="Veenus Nova Innovation Centre - Engineering & Software Solutions" />
         <meta 
           property="og:description" 
-          content="Leading-edge electric motor engineering with 15+ years of innovation. Transform your vision into high-performance, efficient motor solutions." 
+          content="Leading-edge electric motor engineering and software development with 6+ years of innovation. Transform your vision into high-performance solutions." 
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://electromotorpro.com" />
-        <link rel="canonical" href="https://electromotorpro.com/electric-motor-design-services" />
+        <meta property="og:url" content="https://veenusnova.com" />
+        <link rel="canonical" href="https://veenusnova.com" />
       </Helmet>
 
       {/* Dynamic Background Elements */}
-      <div className="fixed inset-0 bg-circuit-pattern opacity-30 pointer-events-none z-0"></div>
-      <div className="fixed top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-accent to-primary z-50">
+      <div className="fixed inset-0 bg-gradient-to-br from-primary-50/20 to-accent-50/20 opacity-60 pointer-events-none z-0"></div>
+      
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500 z-50">
         <div 
           className="h-full bg-gradient-to-r from-white/30 to-white/60 transition-all duration-300 ease-out"
           style={{ width: `${scrollProgress}%` }}
@@ -101,9 +103,9 @@ const ElectricMotorDesignServicesLandingPage = () => {
 
       <div className="relative min-h-screen bg-background overflow-x-hidden">
         {/* Floating Background Elements */}
-        <div className="fixed top-20 right-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl animate-float"></div>
-        <div className="fixed bottom-40 left-16 w-24 h-24 bg-accent/10 rounded-full blur-2xl animate-pulse-slow"></div>
-        <div className="fixed top-1/2 right-1/4 w-16 h-16 bg-success/8 rounded-full blur-xl animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="fixed top-20 right-10 w-32 h-32 bg-primary-500/5 rounded-full blur-3xl animate-float"></div>
+        <div className="fixed bottom-40 left-16 w-24 h-24 bg-accent-500/10 rounded-full blur-2xl animate-pulse-slow"></div>
+        <div className="fixed top-1/2 right-1/4 w-16 h-16 bg-success-500/8 rounded-full blur-xl animate-float" style={{ animationDelay: '2s' }}></div>
 
         {/* Header */}
         <Header />
@@ -112,7 +114,7 @@ const ElectricMotorDesignServicesLandingPage = () => {
         <main className="relative z-10">
           <HeroSection onContactClick={scrollToContact} />
           <ServicesSection />
-          {/* <AboutSection /> */}
+          <AboutSection />
           <WhyChooseUsSection />
           <ContactSection />
         </main>
@@ -124,7 +126,7 @@ const ElectricMotorDesignServicesLandingPage = () => {
         <div className="fixed bottom-8 right-8 z-40 group">
           <button
             onClick={scrollToContact}
-            className="relative w-16 h-16 bg-gradient-to-br from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white rounded-2xl shadow-elevation hover:shadow-elevation-hover flex items-center justify-center transition-all duration-300 hover:scale-110 magnetic-hover"
+            className="relative w-16 h-16 bg-gradient-to-br from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white rounded-2xl shadow-xl hover:shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 magnetic-hover"
             aria-label="Contact Us"
           >
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -144,7 +146,7 @@ const ElectricMotorDesignServicesLandingPage = () => {
           </button>
           
           {/* Pulse Ring */}
-          <div className="absolute inset-0 rounded-2xl border-2 border-primary/30 animate-ping"></div>
+          <div className="absolute inset-0 rounded-2xl border-2 border-primary-500/30 animate-ping"></div>
         </div>
 
         {/* Quick Navigation Pills */}
@@ -163,10 +165,10 @@ const ElectricMotorDesignServicesLandingPage = () => {
                   element?.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="w-12 h-12 bg-white/80 hover:bg-white border border-border/50 rounded-full shadow-elevation hover:shadow-elevation-hover flex items-center justify-center group transition-all duration-300 magnetic-hover"
+              className="w-12 h-12 bg-white/90 hover:bg-white border border-primary-200/50 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center group transition-all duration-300 magnetic-hover"
               title={nav?.label}
             >
-              <div className="w-2 h-2 bg-primary/60 group-hover:bg-primary rounded-full transition-colors duration-300"></div>
+              <div className="w-2 h-2 bg-primary-500 group-hover:bg-accent-500 rounded-full transition-colors duration-300"></div>
             </button>
           ))}
         </div>

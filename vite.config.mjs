@@ -5,7 +5,7 @@ import tagger from "@dhiwise/component-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/veenus/",  // <-- Add this line
+  // <-- Add this line
   build: {
     outDir: "build",
     chunkSizeWarningLimit: 2000,
