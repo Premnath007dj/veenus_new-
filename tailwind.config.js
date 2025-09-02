@@ -137,6 +137,10 @@ module.exports = {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.5" },
         },
+        "pulse-bg": {
+          "0%, 100%": { backgroundColor: "rgba(255, 255, 255, 0.05)" },
+          "50%": { backgroundColor: "rgba(255, 255, 255, 0.15)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -146,6 +150,7 @@ module.exports = {
         "float": "float 6s ease-in-out infinite",
         "gradient-shift": "gradient-shift 15s ease infinite",
         "pulse-slow": "pulse-slow 3s ease-in-out infinite",
+        "pulse-bg": "pulse-bg 2s ease-in-out infinite",
       },
       backgroundImage: {
         'gradient-primary': 'linear-gradient(135deg, #d4a574 0%, #10b981 100%)',

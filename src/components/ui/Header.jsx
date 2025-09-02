@@ -192,6 +192,7 @@ const Header = () => {
               variant="default" 
               size="sm"
               className="bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+              onClick={() => handleHashClick('#contact')}
             >
               Start Project
             </Button>
@@ -308,6 +309,7 @@ const Header = () => {
                 variant="default" 
                 size="sm"
                 className="w-full bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                onClick={() => handleHashClick('#contact')}
               >
                 Start Project
               </Button>

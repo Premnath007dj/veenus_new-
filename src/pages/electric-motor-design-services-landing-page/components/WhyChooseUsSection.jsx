@@ -5,17 +5,17 @@ const WhyChooseUsSection = () => {
   const [activeAdvantage, setActiveAdvantage] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500); 
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const advantages = [
-    // {
-    //   icon: "Rocket",
-    //   title: "Innovation Leadership",
-    //   description: "Pioneering advanced motor technologies with cutting-edge research and development capabilities that push industry boundaries forward.",
-    //   features: ["Patent-pending designs", "Advanced materials research", "Next-gen simulation tools", "AI-driven optimization"],
-    //   stat: { value: "50+", label: "Patents Filed" },
-    //   color: "from-primary to-primary/80",
-    //   bgPattern: "bg-primary/5"
-    // },
     {
       icon: "Target", 
       title: "Precision Engineering",
@@ -39,44 +39,11 @@ const WhyChooseUsSection = () => {
       title: "Expert Team", 
       description: "World-class engineers with decades of combined experience in electromagnetic design, thermal management, and motor development.",
       features: [ "Industry veterans", "Continuous innovation", "Global perspective"],
-      // stat: { value: "150+", label: "Years Combined Experience" },
       color: "from-warning to-warning/80",
       bgPattern: "bg-warning/5"
     }
   ];
 
-  const comparisonData = [
-    { 
-      metric: "Project Success Rate", 
-      us: 99.2, 
-      industry: 85, 
-      icon: "CheckCircle",
-      unit: "%" 
-    },
-    { 
-      metric: "Average Efficiency Gain", 
-      us: 15, 
-      industry: 8, 
-      icon: "TrendingUp",
-      unit: "%" 
-    },
-    { 
-      metric: "Time to Market", 
-      us: 6, 
-      industry: 12, 
-      icon: "Clock",
-      unit: " months" 
-    },
-    { 
-      metric: "Client Retention", 
-      us: 96, 
-      industry: 72, 
-      icon: "Heart",
-      unit: "%" 
-    }
-  ];
-
-  // Intersection Observer for animations
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -94,28 +61,41 @@ const WhyChooseUsSection = () => {
     return () => observer?.disconnect();
   }, []);
 
-  // Auto-rotate advantages
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveAdvantage((prev) => (prev + 1) % advantages?.length);
-    }, 5000);
+    if (!isLoading) {
+      const interval = setInterval(() => {
+        setActiveAdvantage((prev) => (prev + 1) % advantages?.length);
+      }, 5000);
 
-    return () => clearInterval(interval);
-  }, []);
+      return () => clearInterval(interval);
+    }
+  }, [isLoading, advantages?.length]);
+
+  if (isLoading) {
+    return (
+      <section className="py-24 bg-gradient-to-br from-background via-muted/20 to-primary/5">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <div className="animate-pulse-bg">
+            <div className="inline-flex items-center space-x-2 bg-gray-200/80 rounded-full px-6 py-3 mb-6 h-10 w-1/3 mx-auto"></div>
+            <div className="h-16 bg-gray-300/80 rounded-md w-2/3 mx-auto mb-8"></div>
+            <div className="h-8 bg-gray-300/80 rounded-md w-1/2 mx-auto"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section 
       ref={sectionRef}
       className="py-24 bg-gradient-to-br from-background via-muted/20 to-primary/5 relative overflow-hidden"
     >
-      {/* Animated Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full">
         <div className="absolute top-20 right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl animate-pulse-slow"></div>
         <div className="absolute bottom-32 left-16 w-32 h-32 bg-accent/10 rounded-full blur-2xl animate-float"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-r from-success/5 to-warning/5 rounded-full blur-3xl"></div>
       </div>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Section Header */}
         <div className="text-center mb-20">
           <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full px-6 py-3 mb-6">
             <Icon name="Trophy" size={20} className="text-primary" />
@@ -133,9 +113,7 @@ const WhyChooseUsSection = () => {
           </p>
         </div>
 
-        {/* Main Advantages Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
-          {/* Left: Interactive Advantage Selector */}
           <div className="space-y-8">
             {advantages?.map((advantage, index) => (
               <div
@@ -153,7 +131,6 @@ const WhyChooseUsSection = () => {
                     : 'border-border/30 hover:border-primary/30 shadow-elevation'
                 }`}>
                   
-                  {/* Active Indicator */}
                   {activeAdvantage === index && (
                     <div className="absolute -left-1 top-1/2 transform -translate-y-1/2 w-1 h-16 bg-gradient-to-b from-primary to-accent rounded-full"></div>
                   )}
@@ -187,7 +164,6 @@ const WhyChooseUsSection = () => {
             ))}
           </div>
 
-          {/* Right: Active Advantage Details */}
           <div className="relative">
             <div className="sticky top-8">
               <div className="bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-sm border border-border/30 rounded-3xl p-8 shadow-glass">
@@ -203,7 +179,6 @@ const WhyChooseUsSection = () => {
                   {advantages?.[activeAdvantage]?.description}
                 </p>
 
-                {/* Features List */}
                 <div className="space-y-3 mb-8">
                   {advantages?.[activeAdvantage]?.features?.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-center space-x-3">
@@ -215,27 +190,23 @@ const WhyChooseUsSection = () => {
                   ))}
                 </div>
 
-                {/* Stat Highlight */}
-                <div className={`${advantages?.[activeAdvantage]?.bgPattern} rounded-2xl p-6 text-center`}>
-                  <div className="text-3xl font-bold text-foreground mb-1">
-                    {advantages?.[activeAdvantage]?.stat?.value}
+                {advantages?.[activeAdvantage]?.stat && (
+                  <div className={`${advantages?.[activeAdvantage]?.bgPattern} rounded-2xl p-6 text-center`}>
+                    <div className="text-3xl font-bold text-foreground mb-1">
+                      {advantages?.[activeAdvantage]?.stat?.value}
+                    </div>
+                    <div className="text-sm text-muted-foreground font-semibold">
+                      {advantages?.[activeAdvantage]?.stat?.label}
+                    </div>
                   </div>
-                  <div className="text-sm text-muted-foreground font-semibold">
-                    {advantages?.[activeAdvantage]?.stat?.label}
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Performance Comparison Section */}
-        
-
-        {/* Call to Action */}
         <div className="text-center">
           <div className="bg-gradient-to-br from-primary via-primary/90 to-accent text-white rounded-3xl p-12 lg:p-16 relative overflow-hidden">
-            {/* Background Pattern */}
             <div className="absolute inset-0 bg-circuit-pattern opacity-10"></div>
             
             <div className="relative z-10">
