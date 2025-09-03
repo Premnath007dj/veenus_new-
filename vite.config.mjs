@@ -5,10 +5,10 @@ import tagger from "@dhiwise/component-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base :"/vennus",
+  base :"/veenus/",
   // <-- Add this line
   build: {
-    outDir: "build",
+    outDir: "dist",
     chunkSizeWarningLimit: 2000,
   },
   plugins: [tsconfigPaths(), react(), tagger()],

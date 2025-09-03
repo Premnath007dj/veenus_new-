@@ -17,12 +17,12 @@ const WhyChooseUsSection = () => {
 
   const advantages = [
     {
-      icon: "Target", 
+      icon: "Crosshair", 
       title: "Precision Engineering",
       description: "Meticulous attention to detail with rigorous testing and validation processes ensuring optimal performance and unmatched reliability.",
       features: ["±0.1% efficiency accuracy", "Six Sigma quality", "Comprehensive testing"],
       stat: { value: "99.8%", label: "Accuracy Rate" },
-      color: "from-accent to-accent/80",
+      color: "bg-red-600",
       bgPattern: "bg-accent/5"
     },
     {
@@ -144,7 +144,7 @@ const WhyChooseUsSection = () => {
                       <Icon 
                         name={advantage?.icon} 
                         size={28} 
-                        className={activeAdvantage === index ? "text-white" : "text-primary"} 
+                        className={activeAdvantage === index ? "text-white" : "text-accent-600"} 
                       />
                     </div>
                     
@@ -205,7 +205,7 @@ const WhyChooseUsSection = () => {
           </div>
         </div>
 
-        <div className="text-center">
+        {/* <div className="text-center">
           <div className="bg-gradient-to-br from-primary via-primary/90 to-accent text-white rounded-3xl p-12 lg:p-16 relative overflow-hidden">
             <div className="absolute inset-0 bg-circuit-pattern opacity-10"></div>
             
@@ -242,7 +242,7 @@ const WhyChooseUsSection = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

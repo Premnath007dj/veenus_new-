@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import Icon from '../../../components/AppIcon';
 
 const Footer = () => {
@@ -9,20 +10,20 @@ const Footer = () => {
     {
       title: 'Company',
       links: [
-        { label: 'About Us', href: '/about' },
-        { label: 'Our Team', href: '/about#team' },
+        { label: 'About Us', href: '#about' },
+        { label: 'Our Team', href: '#about' },
         { label: 'Careers', href: '/careers' },
-        { label: 'Contact', href: '/contact' }
+        { label: 'Contact', href: '#contact' }
       ]
     },
     {
       title: 'Services',
       links: [
-        { label: 'Product Benchmarking', href: '/services#benchmarking' },
-        { label: 'Electromagnetic Simulation', href: '/services#simulation' },
-        { label: 'Product Design & Development', href: '/services#design' },
-        { label: 'Technical Documentation', href: '/services#documentation' },
-        { label: 'Web & App Development', href: '/services#software' }
+        { label: 'Product Benchmarking', href: '#services' },
+        { label: 'Electromagnetic Simulation', href: '#services' },
+        { label: 'Product Design & Development', href: '#services' },
+        { label: 'Technical Documentation', href: '#services' },
+        { label: 'Web & App Development', href: '#services' }
       ]
     },
     {
@@ -37,10 +38,10 @@ const Footer = () => {
     {
       title: 'Support',
       links: [
-        { label: 'Help Center', href: '/contact#help' },
+        { label: 'Help Center', href: '#contact' },
         { label: 'Documentation', href: '/tech-zone#docs' },
-        { label: 'Training', href: '/contact#training' },
-        { label: 'Maintenance', href: '/contact#maintenance' }
+        { label: 'Training', href: '#contact' },
+        { label: 'Maintenance', href: '#contact' }
       ]
     }
   ];
@@ -110,13 +111,23 @@ const Footer = () => {
               <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      to={link.href}
-                      className="text-primary-200 hover:text-accent-400 transition-colors duration-200 text-sm group flex items-center"
-                    >
-                      <span className="w-1 h-1 bg-accent-400 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
-                      {link.label}
-                    </Link>
+                    {link.href.includes('#') ? (
+                      <HashLink
+                        to={link.href}
+                        className="text-primary-200 hover:text-accent-400 transition-colors duration-200 text-sm group flex items-center"
+                      >
+                        <span className="w-1 h-1 bg-accent-400 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
+                        {link.label}
+                      </HashLink>
+                    ) : (
+                      <Link
+                        to={link.href}
+                        className="text-primary-200 hover:text-accent-400 transition-colors duration-200 text-sm group flex items-center"
+                      >
+                        <span className="w-1 h-1 bg-accent-400 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

@@ -7,10 +7,10 @@ const HeroSection = ({ onContactClick }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const motorTypes = [
-    { name: 'PMSM', fullName: 'Permanent Magnet Synchronous Motors', color: 'text-primary-600' },
-    { name: 'BLDC', fullName: 'Brushless DC Motors', color: 'text-accent-500' },
-    { name: 'SynRM', fullName: 'Synchronous Reluctance Motors', color: 'text-primary-700' },
-    { name: 'PMDC', fullName: 'Permanent Magnet DC Motors', color: 'text-accent-600' }
+    { name: 'PMSM', fullName: 'Permanent Magnet Synchronous Motors', color: 'text-primary-600', image: '/veenus/assets/images/pmsm.png' },
+    { name: 'BLDC', fullName: 'Brushless DC Motors', color: 'text-accent-500', image: '/veenus/assets/images/bldc.png' },
+    { name: 'SynRM', fullName: 'Synchronous Reluctance Motors', color: 'text-primary-700', image: '/veenus/assets/images/synrm.png' },
+    { name: 'PMDC', fullName: 'Permanent Magnet DC Motors', color: 'text-accent-600', image: '/veenus/assets/images/pmdc.png' }
   ];
 
   const stats = [
@@ -67,14 +67,17 @@ const HeroSection = ({ onContactClick }) => {
             <p className="text-xl lg:text-2xl text-muted-foreground mb-4">
               Specializing in cutting-edge design and optimization for
             </p>
-            <div className="h-16 flex items-center justify-center">
-              <div className={`text-3xl lg:text-4xl font-bold transition-all duration-500 ${motorTypes[currentTypeIndex].color}`}>
-                {motorTypes[currentTypeIndex].name}
+            <div className="h-48 flex items-center justify-center">
+              <img src={motorTypes[currentTypeIndex].image} alt={motorTypes[currentTypeIndex].name} className="h-32 w-32 object-contain mr-8" />
+              <div>
+                <div className={`text-3xl lg:text-4xl font-bold transition-all duration-500 ${motorTypes[currentTypeIndex].color}`}>
+                  {motorTypes[currentTypeIndex].name}
+                </div>
+                <p className="text-lg text-muted-foreground">
+                  {motorTypes[currentTypeIndex].fullName}
+                </p>
               </div>
             </div>
-            <p className="text-lg text-muted-foreground">
-              {motorTypes[currentTypeIndex].fullName}
-            </p>
           </div>
 
           {/* Enhanced CTA Section */}
@@ -119,7 +122,7 @@ const HeroSection = ({ onContactClick }) => {
             ))}
           </div>
 
-          {/* Trust Indicators */}
+          {/* Trust Indicators
           <div className="bg-white/80 backdrop-blur-sm border border-primary-100 rounded-2xl p-8 shadow-lg">
             <p className="text-sm text-muted-foreground mb-6 font-medium">
               Trusted by Global Industry Leaders
@@ -141,7 +144,7 @@ const HeroSection = ({ onContactClick }) => {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       

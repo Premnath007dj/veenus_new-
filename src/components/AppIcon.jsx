@@ -5,7 +5,6 @@ import { HelpCircle } from 'lucide-react';
 function Icon({
     name,
     size = 24,
-    color = "currentColor",
     className = "",
     strokeWidth = 2,
     ...props
@@ -18,7 +17,6 @@ function Icon({
 
     return <IconComponent
         size={size}
-        color={color}
         strokeWidth={strokeWidth}
         className={className}
         {...props}

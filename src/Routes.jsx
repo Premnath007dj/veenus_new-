@@ -9,13 +9,13 @@ import Careers from './pages/Careers';
 
 const Routes = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/veenus">
       <ErrorBoundary>
       <ScrollToTop />
       <RouterRoutes>
         {/* Define your route here */}
         <Route path="/" element={<ElectricMotorDesignServicesLandingPage />} />
-        <Route path="/veenus-nova" element={<ElectricMotorDesignServicesLandingPage />} />
+        
         <Route path="/tech-zone" element={<TechZone />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="*" element={<NotFound />} />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from './Button';
+import logo from '/assets/images/Veenus_nova_logo.jpg';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -44,21 +45,9 @@ const Header = () => {
   ];
 
   const handleHashClick = (href) => {
-    // Close mobile menu when clicking hash links
-    setIsMobileMenuOpen(false);
-    
-    // Update active section immediately when clicking
-    const sectionName = href.substring(1);
-    setActiveSection(sectionName);
-    
-    // If we're not on the landing page, navigate to landing page with hash
-    if (!isLandingPage) {
-      window.location.href = '/' + href;
-      return;
-    }
-    
-    // Scroll to the section with offset for header
+    console.log("handleHashClick called with href:", href);
     const element = document.querySelector(href);
+    console.log("element:", element);
     if (element) {
       const headerHeight = 80; // Height of the fixed header
       const elementPosition = element.offsetTop - headerHeight;
@@ -82,22 +71,22 @@ const Header = () => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-xl shadow-2xl border-b border-primary-100/50' 
+        ? 'bg-background/95 backdrop-blur-xl shadow-2xl border-b border-primary-100/50' 
         : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           
-          {/* Logo */}
+          {/* Logo and Company Name */}
           <div className="flex items-center space-x-3 group">
             <div className="w-12 h-12 rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110">
               <img 
-                src="/assets/images/Veenus_nova_logo.jpg" 
+                src="/veenus/assets/images/Veenus_nova_logo.jpg" 
                 alt="Veenus Nova Innovation Centre Logo" 
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="hidden sm:block">
+            <div>
               <h1 className="text-xl font-bold gradient-text group-hover:scale-105 transition-transform duration-300">Veenus Nova</h1>
               <p className="text-xs text-muted-foreground group-hover:text-primary-600 transition-colors duration-300">Innovation Centre</p>
             </div>
@@ -119,8 +108,8 @@ const Header = () => {
                       onClick={() => handleHashClick(item.href)}
                       className={`flex items-center space-x-1.5 px-4 py-3 rounded-xl font-medium transition-all duration-300 relative overflow-hidden ${
                         active 
-                          ? 'text-primary-700 bg-primary-50/80 border-b-2 border-primary-600 shadow-sm' 
-                          : 'text-foreground hover:text-primary-600 hover:bg-primary-50/60 hover:border-b-2 hover:border-primary-300'
+                          ? 'text-primary-700 bg-primary-100' 
+                          : 'text-foreground hover:text-primary-600 hover:bg-primary-50/60'
                       }`}
                     >
                       <span className={`text-sm transition-all duration-300 ${active ? 'scale-110' : 'group-hover:scale-110'}`}>
@@ -148,8 +137,8 @@ const Header = () => {
                       to={item.href}
                       className={`flex items-center space-x-1.5 px-4 py-3 rounded-xl font-medium transition-all duration-300 relative overflow-hidden ${
                         active 
-                          ? 'text-primary-700 bg-primary-50/80 border-b-2 border-primary-600 shadow-sm' 
-                          : 'text-foreground hover:text-primary-600 hover:bg-primary-50/60 hover:border-b-2 hover:border-primary-300'
+                          ? 'text-primary-700 bg-primary-100' 
+                          : 'text-foreground hover:text-primary-600 hover:bg-primary-50/60'
                       }`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
@@ -199,27 +188,29 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-3 rounded-2xl hover:bg-primary-50 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-            aria-label="Toggle mobile menu"
-          >
-            <div className="w-6 h-6 flex flex-col justify-center items-center">
-              <span className={`w-5 h-0.5 bg-foreground transition-all duration-300 ${
-                isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''
-              }`}></span>
-              <span className={`w-5 h-0.5 bg-foreground transition-all duration-300 mt-1 ${
-                isMobileMenuOpen ? 'opacity-0' : ''
-              }`}></span>
-              <span className={`w-5 h-0.5 bg-foreground transition-all duration-300 mt-1 ${
-                isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
-              }`}></span>
-            </div>
-          </button>
+          <div className="lg:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-3 rounded-2xl hover:bg-primary-50 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+              aria-label="Toggle mobile menu"
+            >
+              <div className="w-6 h-6 flex flex-col justify-center items-center">
+                <span className={`w-5 h-0.5 bg-foreground transition-all duration-300 ${
+                  isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''
+                }`}></span>
+                <span className={`w-5 h-0.5 bg-foreground transition-all duration-300 mt-1 ${
+                  isMobileMenuOpen ? 'opacity-0' : ''
+                }`}></span>
+                <span className={`w-5 h-0.5 bg-foreground transition-all duration-300 mt-1 ${
+                  isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
+                }`}></span>
+              </div>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`lg:hidden transition-all duration-500 overflow-hidden ${
+        <div className={`lg:hidden transition-all duration-500 overflow-hidden bg-background/95 backdrop-blur-xl ${
           isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}>
           <div className="py-6 space-y-3 border-t border-primary-100/50">
@@ -237,8 +228,8 @@ const Header = () => {
                       onClick={() => handleHashClick(item.href)}
                       className={`flex items-center space-x-3 px-4 py-4 rounded-xl font-medium transition-all duration-300 relative overflow-hidden w-full text-left ${
                         active 
-                          ? 'text-primary-700 bg-primary-50/80 border-l-4 border-primary-600 shadow-sm' 
-                          : 'text-foreground hover:text-primary-600 hover:bg-primary-50/60 hover:border-l-4 hover:border-primary-300'
+                          ? 'text-primary-700 bg-primary-100' 
+                          : 'text-foreground hover:text-primary-600 hover:bg-primary-50/60'
                       }`}
                     >
                       <span className={`text-lg transition-all duration-300 ${active ? 'scale-110' : ''}`}>
@@ -266,8 +257,8 @@ const Header = () => {
                       to={item.href}
                       className={`flex items-center space-x-3 px-4 py-4 rounded-xl font-medium transition-all duration-300 relative overflow-hidden w-full text-left ${
                         active 
-                          ? 'text-primary-700 bg-primary-50/80 border-l-4 border-primary-600 shadow-sm' 
-                          : 'text-foreground hover:text-primary-600 hover:bg-primary-50/60 hover:border-l-4 hover:border-primary-300'
+                          ? 'text-primary-700 bg-primary-100' 
+                          : 'text-foreground hover:text-primary-600 hover:bg-primary-50/60'
                       }`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
