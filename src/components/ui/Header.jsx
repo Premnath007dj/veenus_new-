@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from './Button';
-import logo from '/assets/images/Veenus_nova_logo.jpg';
+import Icon from '../AppIcon';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -74,12 +74,12 @@ const Header = () => {
         ? 'bg-background/95 backdrop-blur-xl shadow-2xl border-b border-primary-100/50' 
         : 'bg-transparent'
     }`}>
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-20">
           
           {/* Logo and Company Name */}
           <div className="flex items-center space-x-3 group">
-            <div className="w-12 h-12 rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110">
               <img 
                 src="/veenus/assets/images/Veenus_nova_logo.jpg" 
                 alt="Veenus Nova Innovation Centre Logo" 
@@ -87,7 +87,7 @@ const Header = () => {
               />
             </div>
             <div>
-              <h1 className="text-xl font-bold gradient-text group-hover:scale-105 transition-transform duration-300">Veenus Nova</h1>
+              <h1 className="text-lg sm:text-xl font-bold gradient-text group-hover:scale-105 transition-transform duration-300">Veenus Nova</h1>
               <p className="text-xs text-muted-foreground group-hover:text-primary-600 transition-colors duration-300">Innovation Centre</p>
             </div>
           </div>
@@ -208,6 +208,17 @@ const Header = () => {
             </button>
           </div>
         </div>
+
+        {/* Industry Badge */}
+        {!isScrolled && isLandingPage && (
+          <div className="py-3 text-center">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-100 to-accent-100 border border-primary-200 rounded-full px-6 py-2 shadow-lg">
+              <div className="w-2 h-2 bg-accent-500 rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium text-primary-700">Industry Leading Motor Design Excellence</span>
+              <Icon name="Zap" size={16} className="text-primary-600" />
+            </div>
+          </div>
+        )}
 
         {/* Mobile Navigation */}
         <div className={`lg:hidden transition-all duration-500 overflow-hidden bg-background/95 backdrop-blur-xl ${

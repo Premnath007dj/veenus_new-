@@ -28,7 +28,7 @@ const HeroSection = ({ onContactClick }) => {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-primary-100 to-accent-50 overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-primary-100 to-accent-50 overflow-hidden pt-32">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50/20 to-accent-50/20 opacity-40"></div>
       
@@ -46,18 +46,13 @@ const HeroSection = ({ onContactClick }) => {
         </svg>
       </div>
       
-      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
         <div className={`max-w-5xl mx-auto transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           
-          {/* Dynamic Badge */}
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-100 to-accent-100 border border-primary-200 rounded-full px-6 py-3 mb-8 shadow-lg">
-            <div className="w-2 h-2 bg-accent-500 rounded-full animate-pulse"></div>
-            <span className="text-sm font-medium text-primary-700">Industry Leading Motor Design Excellence</span>
-            <Icon name="Zap" size={16} className="text-primary-600" />
-          </div>
+          
 
           {/* Main Headline */}
-          <h1 className="text-6xl lg:text-8xl font-bold text-foreground mb-8 leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-foreground mb-8 leading-snug sm:leading-tight">
             <span className="block gradient-text">Veenus Nova</span>
             <span className="block text-accent-600">Innovation Centre</span>
           </h1>
@@ -67,8 +62,8 @@ const HeroSection = ({ onContactClick }) => {
             <p className="text-xl lg:text-2xl text-muted-foreground mb-4">
               Specializing in cutting-edge design and optimization for
             </p>
-            <div className="h-48 flex items-center justify-center">
-              <img src={motorTypes[currentTypeIndex].image} alt={motorTypes[currentTypeIndex].name} className="h-32 w-32 object-contain mr-8" />
+            <div className="h-48 flex flex-col sm:flex-row items-center justify-center">
+              <img src={motorTypes[currentTypeIndex].image} alt={motorTypes[currentTypeIndex].name} className="h-24 w-24 sm:h-32 sm:w-32 object-contain mb-4 sm:mb-0 sm:mr-8" />
               <div>
                 <div className={`text-3xl lg:text-4xl font-bold transition-all duration-500 ${motorTypes[currentTypeIndex].color}`}>
                   {motorTypes[currentTypeIndex].name}
@@ -86,7 +81,7 @@ const HeroSection = ({ onContactClick }) => {
               variant="default" 
               size="lg" 
               onClick={onContactClick}
-              className="text-xl px-12 py-6 rounded-2xl magnetic-hover bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-xl hover:shadow-2xl text-white border-0"
+              className="text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 rounded-2xl magnetic-hover bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-xl hover:shadow-2xl text-white border-0"
             >
               <Icon name="Rocket" size={24} className="mr-3" />
               Start Your Project
@@ -95,7 +90,7 @@ const HeroSection = ({ onContactClick }) => {
             <Button 
               variant="outline" 
               size="lg"
-              className="text-xl px-12 py-6 rounded-2xl border-2 border-primary-200 hover:border-primary-400 magnetic-hover bg-white/80 backdrop-blur-sm hover:bg-primary-50 transition-all duration-300"
+              className="text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 rounded-2xl border-2 border-primary-200 hover:border-primary-400 magnetic-hover bg-white/80 backdrop-blur-sm hover:bg-primary-50 transition-all duration-300"
             >
               <Icon name="Play" size={24} className="mr-3" />
               Learn More
@@ -103,7 +98,7 @@ const HeroSection = ({ onContactClick }) => {
           </div>
 
           {/* Stats Bar */}
-          <div className="flex justify-center space-x-8 mb-12">
+          <div className="flex flex-col sm:flex-row justify-center items-center sm:space-x-8 space-y-8 sm:space-y-0 mb-12">
             {stats.map((stat, index) => (
               <div 
                 key={index}

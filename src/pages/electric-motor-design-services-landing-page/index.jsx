@@ -7,9 +7,11 @@ import AboutSection from './components/AboutSection';
 import WhyChooseUsSection from './components/WhyChooseUsSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import Chatbot from './components/Chatbot';
 
 const ElectricMotorDesignServicesLandingPage = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isChatbotOpen, setChatbotOpen] = useState(false);
 
   useEffect(() => {
     // Enhanced smooth scrolling for anchor links
@@ -65,6 +67,10 @@ const ElectricMotorDesignServicesLandingPage = () => {
         behavior: 'smooth'
       });
     }
+  };
+
+  const toggleChatbot = () => {
+    setChatbotOpen(!isChatbotOpen);
   };
 
   return (
@@ -125,10 +131,13 @@ const ElectricMotorDesignServicesLandingPage = () => {
         {/* Enhanced Floating Action Button */}
         <div className="fixed bottom-8 right-8 z-40 group">
           <button
-            onClick={scrollToContact}
-            className="relative w-16 h-16 bg-gradient-to-br from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white rounded-2xl shadow-xl hover:shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 magnetic-hover"
+            onClick={toggleChatbot}
+            className="relative w-16 h-16 bg-gradient-to-br from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white rounded-2xl shadow-xl hover:shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110"
             aria-label="Contact Us"
           >
+            <div className="absolute -top-12 right-1/2 transform translate-x-1/2 px-3 py-1 bg-gray-800 text-white text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+              Ask a question!
+            </div>
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <svg 
               className="w-7 h-7 relative z-10 group-hover:scale-110 transition-transform duration-300" 
@@ -145,9 +154,10 @@ const ElectricMotorDesignServicesLandingPage = () => {
             </svg>
           </button>
           
-          {/* Pulse Ring */}
-          <div className="absolute inset-0 rounded-2xl border-2 border-primary-500/30 animate-ping"></div>
+          
         </div>
+
+        {isChatbotOpen && <Chatbot onClose={toggleChatbot} />}
 
         {/* Quick Navigation Pills */}
         <div className="fixed left-8 top-1/2 transform -translate-y-1/2 z-40 space-y-4 hidden lg:block">
