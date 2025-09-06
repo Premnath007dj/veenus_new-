@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Icon from '../../../components/AppIcon';
 import Button from '../../../components/ui/Button';
-import { GOOGLE_SHEETS_CONFIG } from '../../../config/googleSheets';
+
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -53,8 +53,9 @@ const ContactSection = () => {
     
     try {
       // Send data to Google Sheets
-      const response = await fetch(GOOGLE_SHEETS_CONFIG.WEB_APP_URL, {
+      const response = await fetch('/api', {
         method: 'POST',
+        redirect: 'follow',
         headers: {
           'Content-Type': 'application/json',
         },

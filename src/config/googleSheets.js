@@ -3,7 +3,7 @@
 
 export const GOOGLE_SHEETS_CONFIG = {
   // Replace this with your actual Google Apps Script Web App URL
-  WEB_APP_URL: 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE',
+  WEB_APP_URL: '',
   
   // Form field mapping (don't change these unless you modify the Apps Script)
   FIELDS: {
@@ -24,6 +24,3 @@ export const GOOGLE_SHEETS_CONFIG = {
     NETWORK_ERROR: 'Network error. Please check your connection and try again.'
   }
 };
-
-// Example of what your Web App URL should look like:
-// WEB_APP_URL: 'https://script.google.com/macros/s/AKfycbz1234567890abcdefghijklmnop/exec'
