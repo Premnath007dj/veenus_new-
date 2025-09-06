@@ -133,6 +133,12 @@ module.exports = {
           "50%": { backgroundPosition: "100% 50%" },
           "100%": { backgroundPosition: "0% 50%" },
         },
+
+
+        "color-shift-green": { "0%": { backgroundColor: "#34d399" }, "50%": { backgroundColor: "#10b981" }, "100%": { backgroundColor: "#34d399" } },
+      "color-shift-brown": { "0%": { backgroundColor: "#8b7355" }, "50%": { backgroundColor: "#b8945f" }, "100%": { backgroundColor: "#8b7355" } },
+      "color-shift-accent": { "0%": { backgroundColor: "#6ee7b7" }, "50%": { backgroundColor: "#10b981" }, "100%": { backgroundColor: "#6ee7b7" } },
+
         "pulse-slow": {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.5" },
@@ -141,16 +147,40 @@ module.exports = {
           "0%, 100%": { backgroundColor: "rgba(255, 255, 255, 0.05)" },
           "50%": { backgroundColor: "rgba(255, 255, 255, 0.15)" },
         },
+         "spin-slow": {
+      "0%": { transform: "rotate(0deg)" },
+      "100%": { transform: "rotate(360deg)" },
+    },
+    "spin-slower": {
+      "0%": { transform: "rotate(0deg)" },
+      "100%": { transform: "rotate(360deg)" },
+    },
+    "spin-slowest": {
+      "0%": { transform: "rotate(0deg)" },
+      "100%": { transform: "rotate(360deg)" },
+    },
+    "progress": {
+      "0%": { width: "0%" },
+      "100%": { width: "100%" },
+    },
+        
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.2s ease-out",
-        "slide-in": "slide-in 0.2s ease-out",
-        "float": "float 6s ease-in-out infinite",
-        "gradient-shift": "gradient-shift 15s ease infinite",
-        "pulse-slow": "pulse-slow 3s ease-in-out infinite",
-        "pulse-bg": "pulse-bg 2s ease-in-out infinite",
+  "accordion-up": "accordion-up 0.2s ease-out",
+  "fade-in": "fade-in 0.2s ease-out",
+  "slide-in": "slide-in 0.2s ease-out",
+  "float": "float 6s ease-in-out infinite",
+  "gradient-shift": "gradient-shift 15s ease infinite",
+  "pulse-slow": "pulse-slow 3s ease-in-out infinite",
+  "pulse-bg": "pulse-bg 2s ease-in-out infinite",
+  "spin-slow": "spin-slow 8s linear infinite",
+  "spin-slower": "spin-slower 12s linear infinite",
+  "spin-slowest": "spin-slowest 16s linear infinite",
+  "progress": "progress 5s linear forwards",
+ "color-shift-green": "color-shift-green 4s ease-in-out infinite",
+"color-shift-brown": "color-shift-brown 4s ease-in-out infinite",
+"color-shift-accent": "color-shift-accent 4s ease-in-out infinite",
       },
       backgroundImage: {
         'gradient-primary': 'linear-gradient(135deg, #d4a574 0%, #10b981 100%)',
