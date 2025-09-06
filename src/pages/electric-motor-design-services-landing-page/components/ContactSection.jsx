@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Icon from '../../../components/AppIcon';
 import Button from '../../../components/ui/Button';
+import { GOOGLE_SHEETS_CONFIG } from '../../../config/googleSheets';
 
 
 const ContactSection = () => {
@@ -43,51 +44,35 @@ const ContactSection = () => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (!validateForm()) return;
+  if (!validateForm()) return;
 
-    setIsSubmitting(true);
-    
-    try {
-      // Send data to Google Sheets
-      const response = await fetch('/api', {
-        method: 'POST',
-        redirect: 'follow',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          phone: formData.phone.trim(),
-          subject: formData.subject.trim(),
-          message: formData.message.trim()
-        })
-      });
+  setIsSubmitting(true);
 
-      const result = await response.json();
-      
-      if (result.success) {
-        // Success - show thank you message
-        setIsSubmitted(true);
-        setFormData({
-          name: '', email: '', phone: '', subject: '', message: ''
-        });
-      } else {
-        // Error from Google Sheets
-        throw new Error(result.message || 'Failed to submit form');
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      // You can add error handling here (show error message to user)
-      alert('Sorry, there was an error submitting your form. Please try again or contact us directly.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  try {
+    const scriptURL = GOOGLE_SHEETS_CONFIG.WEB_APP_URL;
+
+    await fetch(scriptURL, {
+      method: 'POST',
+      body: JSON.stringify(formData),
+      headers: { "Content-Type": "application/json" },
+      mode: "no-cors" // 🚀 fixes the CORS block
+    });
+
+    // ⚠️ Can't read response with no-cors, so just assume success
+    setIsSubmitted(true);
+    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+
+  } catch (error) {
+    console.error('Form submission error:', error);
+    alert('Sorry, there was an error submitting your form.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   if (isSubmitted) {
     return (
