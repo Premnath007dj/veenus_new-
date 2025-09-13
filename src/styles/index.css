@@ -13,6 +13,11 @@
   --gray: #757575;
 
   --shadow-soft: 0 4px 8px rgba(0,0,0,0.1);
+
+  /* RGB values for animated background */
+  --primary-rgb: 76, 175, 80; /* Corresponds to --primary-green */
+  --accent-rgb: 26, 188, 156; /* A teal-like accent color */
+  --dark-surface-rgb: 10, 10, 20; /* Very dark blue for background */
 }
 
 body {
@@ -102,4 +107,19 @@ h2 {
 
 .text-shadow-custom {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.animated-background {
+  background-color: rgb(var(--dark-surface-rgb));
+  background-image: 
+    radial-gradient(rgba(var(--primary-rgb), 0.1) 1px, transparent 1px),
+    radial-gradient(rgba(var(--accent-rgb), 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  animation: background-flow 30s linear infinite;
+}
+
+@keyframes background-flow {
+  from { background-position: 0 0, 20px 20px; }
+  to { background-position: 40px 40px, 60px 60px; }
 }

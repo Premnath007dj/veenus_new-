@@ -69,12 +69,13 @@ function Header() {
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-3 animate-image-float">
           <img
-            src="/assets/images/Veenus_nova_logo.jpg"
+            src="/veenus_new-/assets/images/Veenus_nova_logo.jpg"
             alt="Veenus Nova Innovation Centre Logo"
             className="w-10 h-10 rounded-lg object-cover shadow-md"
           />
           <div>
-            <h1 className="text-white text-lg sm:text-xl font-bold">Veenus Nova</h1>
+            <h1 className=" text-lg sm:text-xl font-bold bg-gradient-to-r from-green-400 via-blue-400 to-blue-600 animate-fade-in 
+                     tracking-wide text-shadow-custom">Veenus Nova</h1>
             <p className="text-white text-xs">Innovation Centre</p>
           </div>
         </Link>

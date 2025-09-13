@@ -143,7 +143,7 @@ const ServicesPage = () => {
           </div>
           {/* Subtle background image overlay */}
           <div className="absolute inset-0 z-[1] pointer-events-none opacity-20">
-            <img src="/assets/images/m2.png" alt="Background Overlay" className="w-full h-full object-cover animate-image-float" />
+            <img src="/veenus_new-/assets/images/m2.png" alt="Background Overlay" className="w-full h-full object-cover animate-image-float" />
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-6">

@@ -199,7 +199,7 @@ const HeroSection = ({ onContactClick }) => {
           {/* Right Half (Image Content) */}
           <div className="flex items-center justify-center p-8">
             <img
-              src="/assets/images/motorstock1.png"
+              src="/veenus_new-/assets/images/motorstock1.png"
               alt="Advanced Electric Motor"
               className="max-w-full h-auto w-full md:w-10/12 object-contain animate-image-float"
             />
