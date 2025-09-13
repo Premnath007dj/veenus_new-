@@ -8,13 +8,15 @@ const Button = React.forwardRef(({
   asChild = false, 
   ...props 
 }, ref) => {
-  const baseClasses = "inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+  const baseClasses = "inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-green focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
   
   const variants = {
-    default: "bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white shadow-lg hover:shadow-xl border-0",
+    // Primary CTA: green background, white text, hover pulse
+    default: "bg-primary-green text-white hover:bg-light-green hover:animate-pulse shadow-soft",
     destructive: "bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white shadow-lg hover:shadow-xl border-0",
-    outline: "border-2 border-primary-200 bg-white hover:bg-primary-50 hover:border-primary-300 text-primary-700 shadow-md hover:shadow-lg",
-    secondary: "bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white shadow-lg hover:shadow-xl border-0",
+    // Secondary CTA: transparent, green border, text dark blue
+    outline: "border-2 border-primary-green bg-transparent text-dark-blue hover:bg-light-green/40",
+    secondary: "bg-transparent border-2 border-primary-green text-dark-blue hover:bg-light-green/40",
     ghost: "hover:bg-primary-50 hover:text-primary-700 text-primary-600",
     link: "text-primary-600 underline-offset-4 hover:underline",
     success: "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-lg hover:shadow-xl border-0",

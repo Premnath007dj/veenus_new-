@@ -1,326 +1,198 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from './Button';
-import Icon from '../AppIcon';
 
-const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
+const navigationItems = [
+  { label: 'Home', href: '/', icon: '🏠' },
+  { label: 'Services', href: '/services', icon: '🛠️' },
+  { label: 'Why Choose Us', href: '/why-choose-us', icon: '✨' },
+  { label: 'Careers', href: '/careers', icon: '💼' },
+  { label: 'Tech Zone', href: '/tech-zone', icon: '🧪' },
+  { label: 'About', href: '/about', icon: 'ℹ️' },
+  { label: 'Contact', href: '/contact', icon: '✉️' },
+];
+
+function Header() {
   const location = useLocation();
-
-  // Check if we're on the landing page
-  const isLandingPage = location.pathname === '/';
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const saved = localStorage.getItem('theme');
+    if (saved) return saved === 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+  const menuRef = useRef(null);
+  const [maxHeight, setMaxHeight] = useState('0px');
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-      
-      // Update active section based on scroll position
-      if (isLandingPage) {
-        const sections = ['hero', 'services', 'about', 'contact'];
-        const scrollPosition = window.scrollY + 100;
-        
-        for (let i = sections.length - 1; i >= 0; i--) {
-          const section = document.getElementById(sections[i]);
-          if (section && section.offsetTop <= scrollPosition) {
-            setActiveSection(sections[i]);
-            break;
-          }
-        }
-      }
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isLandingPage]);
+  }, []);
 
-  const navigationItems = [
-    { label: 'Home', href: '/', isHashLink: false, icon: '🏠' },
-    { label: 'Services', href: '#services', isHashLink: true, icon: '⚡' },
-    { label: 'About', href: '#about', isHashLink: true, icon: '👥' },
-    { label: 'Tech Zone', href: '/tech-zone', isHashLink: false, icon: '🔬' },
-    { label: 'Contact', href: '#contact', isHashLink: true, icon: '📞' },
-    { label: 'Careers', href: '/careers', isHashLink: false, icon: '💼' }
-  ];
+  useEffect(() => {
+    setMaxHeight(isMobileMenuOpen && menuRef.current ? `${menuRef.current.scrollHeight}px` : '0px');
+  }, [isMobileMenuOpen]);
 
-  const handleHashClick = (href) => {
-    console.log("handleHashClick called with href:", href);
-    const element = document.querySelector(href);
-    console.log("element:", element);
-    if (element) {
-      const headerHeight = 80; // Height of the fixed header
-      const elementPosition = element.offsetTop - headerHeight;
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      });
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDark) {
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
-  };
+  }, [isDark]);
 
-  const isActive = (href) => {
-    // For hash links, only active on landing page and when section is active
-    if (href.startsWith('#')) {
-      const sectionName = href.substring(1); // Remove the # to get section name
-      return isLandingPage && activeSection === sectionName;
-    }
-    // For page links, check if current path matches exactly
-    return location.pathname === href;
-  };
+  const isActive = useMemo(
+    () => (href) => (href === '/' ? location.pathname === '/' : location.pathname.startsWith(href)),
+    [location.pathname]
+  );
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isScrolled 
-        ? 'bg-background/95 backdrop-blur-xl shadow-2xl border-b border-primary-100/50' 
-        : 'bg-transparent'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-20">
-          
-          {/* Logo and Company Name */}
-          <div className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110">
-              <img 
-                src="/veenus/assets/images/Veenus_nova_logo.jpg" 
-                alt="Veenus Nova Innovation Centre Logo" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div>
-              <h1 className="text-lg sm:text-xl font-bold gradient-text group-hover:scale-105 transition-transform duration-300">Veenus Nova</h1>
-              <p className="text-xs text-muted-foreground group-hover:text-primary-600 transition-colors duration-300">Innovation Centre</p>
-            </div>
-          </div>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? 'bg-gradient-to-r from-dark-blue/90 to-dark-blue/80 shadow-lg border-b border-primary-green/30'
+          : 'bg-dark-blue/80'
+      } backdrop-blur-xl ring-1 ring-white/10`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-0.5">
-            {navigationItems.map((item) => {
-              // Hide Services and Contact on non-landing pages since they are hash links
-              if (!isLandingPage && item.isHashLink) {
-                return null;
-              }
-              
-              const active = isActive(item.href);
-              return (
-                <div key={item.label} className="relative group">
-                  {item.isHashLink ? (
-                    <button
-                      onClick={() => handleHashClick(item.href)}
-                      className={`flex items-center space-x-1.5 px-4 py-3 rounded-xl font-medium transition-all duration-300 relative overflow-hidden ${
-                        active 
-                          ? 'text-primary-700 bg-primary-100' 
-                          : 'text-foreground hover:text-primary-600 hover:bg-primary-50/60'
-                      }`}
-                    >
-                      <span className={`text-sm transition-all duration-300 ${active ? 'scale-110' : 'group-hover:scale-110'}`}>
-                        {item.icon}
-                      </span>
-                      <span className="relative z-10 font-semibold text-sm">{item.label}</span>
-                      
-                      {/* Active indicator - bottom border */}
-                      {active && (
-                        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-600 to-accent-600 rounded-full"></div>
-                      )}
-                      
-                      {/* Hover effect */}
-                      {!active && (
-                        <div className="absolute inset-0 bg-primary-50/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
-                      )}
-                      
-                      {/* Pulse effect for active state */}
-                      {active && (
-                        <div className="absolute inset-0 bg-primary-100/30 rounded-xl animate-pulse"></div>
-                      )}
-                    </button>
-                  ) : (
-                    <Link
-                      to={item.href}
-                      className={`flex items-center space-x-1.5 px-4 py-3 rounded-xl font-medium transition-all duration-300 relative overflow-hidden ${
-                        active 
-                          ? 'text-primary-700 bg-primary-100' 
-                          : 'text-foreground hover:text-primary-600 hover:bg-primary-50/60'
-                      }`}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <span className={`text-sm transition-all duration-300 ${active ? 'scale-110' : 'group-hover:scale-110'}`}>
-                        {item.icon}
-                      </span>
-                      <span className="relative z-10 font-semibold text-sm">{item.label}</span>
-                      
-                      {/* Active indicator - bottom border */}
-                      {active && (
-                        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-600 to-accent-600 rounded-full"></div>
-                      )}
-                      
-                      {/* Hover effect */}
-                      {!active && (
-                        <div className="absolute inset-0 bg-primary-50/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
-                      )}
-                      
-                      {/* Pulse effect for active state */}
-                      {active && (
-                        <div className="absolute inset-0 bg-primary-100/30 rounded-xl animate-pulse"></div>
-                      )}
-                    </Link>
-                  )}
-                </div>
-              );
-            })}
+        {/* Logo */}
+        <Link to="/" className="flex items-center space-x-3 animate-image-float">
+          <img
+            src="public/assets/images/Veenus_nova_logo.jpg"
+            alt="Veenus Nova Innovation Centre Logo"
+            className="w-10 h-10 rounded-lg object-cover shadow-md"
+          />
+          <div>
+            <h1 className="text-white text-lg sm:text-xl font-bold">Veenus Nova</h1>
+            <p className="text-white text-xs">Innovation Centre</p>
+          </div>
+        </Link>
+
+        {/* Desktop Navigation + Actions */}
+        <div className="hidden lg:flex items-center space-x-10">
+          <nav className="flex space-x-6">
+            {navigationItems.map((item) => (
+              <Link
+                key={item.label}
+                to={item.href}
+                className={`relative text-white px-4 py-2 font-medium rounded-md transition-transform duration-300 transform hover:scale-105 hover:shadow-soft ${
+                  isActive(item.href) ? 'underline text-primary-green' : ''
+                }`}
+              >
+                {item.label}
+                <span className="absolute left-0 -bottom-1 h-0.5 w-full bg-primary-green scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+              </Link>
+            ))}
           </nav>
 
-          {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center space-x-3">
-            <Button 
-              variant="outline" 
-              size="sm"
-              className="border-primary-200 text-primary-700 hover:bg-primary-50 hover:border-primary-300 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              Get Quote
-            </Button>
-            <Button 
-              variant="default" 
-              size="sm"
-              className="bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-              onClick={() => handleHashClick('#contact')}
-            >
-              Start Project
-            </Button>
-          </div>
+          {/* Dark Mode Toggle */}
+          <button
+            type="button"
+            aria-label="Toggle dark mode"
+            onClick={() => setIsDark((v) => !v)}
+            className="relative inline-flex items-center h-8 w-14 rounded-full bg-white/20 ring-1 ring-white/30 shadow-inner transition-colors duration-300 hover:bg-white/30"
+          >
+            <span
+              className={`inline-block h-6 w-6 bg-white rounded-full shadow-md transition-transform duration-300 ${
+                isDark ? 'translate-x-6' : 'translate-x-1'
+              }`}
+            ></span>
+          </button>
 
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-3 rounded-2xl hover:bg-primary-50 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-              aria-label="Toggle mobile menu"
-            >
-              <div className="w-6 h-6 flex flex-col justify-center items-center">
-                <span className={`w-5 h-0.5 bg-foreground transition-all duration-300 ${
-                  isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''
-                }`}></span>
-                <span className={`w-5 h-0.5 bg-foreground transition-all duration-300 mt-1 ${
-                  isMobileMenuOpen ? 'opacity-0' : ''
-                }`}></span>
-                <span className={`w-5 h-0.5 bg-foreground transition-all duration-300 mt-1 ${
-                  isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
-                }`}></span>
-              </div>
-            </button>
-          </div>
+          {/* Get a Quote Button */}
+          <Link to="/contact">
+            <Button variant="default" size="sm" className="shadow-soft hover:scale-105 animate-pulse-slow">
+              Get a Quote
+            </Button>
+          </Link>
         </div>
 
-        {/* Industry Badge */}
-        {!isScrolled && isLandingPage && (
-          <div className="py-3 text-center">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-100 to-accent-100 border border-primary-200 rounded-full px-6 py-2 shadow-lg">
-              <div className="w-2 h-2 bg-accent-500 rounded-full animate-pulse"></div>
-              <span className="text-sm font-medium text-primary-700">Industry Leading Motor Design Excellence</span>
-              <Icon name="Zap" size={16} className="text-primary-600" />
+        {/* Mobile Hamburger */}
+        <div className="lg:hidden">
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle mobile menu"
+            className="p-3 rounded-full bg-primary-green/30 hover:bg-primary-green/50 transition-all duration-300 shadow-md"
+          >
+            <div className="w-6 h-6 flex flex-col justify-between items-center">
+              <span
+                className={`block h-0.5 w-6 bg-white transition-transform duration-300 ${
+                  isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''
+                }`}
+              ></span>
+              <span
+                className={`block h-0.5 w-6 bg-white transition-opacity duration-300 mt-1 ${
+                  isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
+                }`}
+              ></span>
+              <span
+                className={`block h-0.5 w-6 bg-white transition-transform duration-300 mt-1 ${
+                  isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
+                }`}
+              ></span>
             </div>
-          </div>
-        )}
-
-        {/* Mobile Navigation */}
-        <div className={`lg:hidden transition-all duration-500 overflow-hidden bg-background/95 backdrop-blur-xl ${
-          isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}>
-          <div className="py-6 space-y-3 border-t border-primary-100/50">
-            {navigationItems.map((item) => {
-              // Hide Services and Contact on non-landing pages since they are hash links
-              if (!isLandingPage && item.isHashLink) {
-                return null;
-              }
-              
-              const active = isActive(item.href);
-              return (
-                <div key={item.label}>
-                  {item.isHashLink ? (
-                    <button
-                      onClick={() => handleHashClick(item.href)}
-                      className={`flex items-center space-x-3 px-4 py-4 rounded-xl font-medium transition-all duration-300 relative overflow-hidden w-full text-left ${
-                        active 
-                          ? 'text-primary-700 bg-primary-100' 
-                          : 'text-foreground hover:text-primary-600 hover:bg-primary-50/60'
-                      }`}
-                    >
-                      <span className={`text-lg transition-all duration-300 ${active ? 'scale-110' : ''}`}>
-                        {item.icon}
-                      </span>
-                      <span className="relative z-10 font-semibold">{item.label}</span>
-                      
-                      {/* Active indicator - left border */}
-                      {active && (
-                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-600 to-accent-600 rounded-r-full"></div>
-                      )}
-                      
-                      {/* Hover effect */}
-                      {!active && (
-                        <div className="absolute inset-0 bg-primary-50/40 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
-                      )}
-                      
-                      {/* Pulse effect for active state */}
-                      {active && (
-                        <div className="absolute inset-0 bg-primary-100/30 rounded-xl animate-pulse"></div>
-                      )}
-                    </button>
-                  ) : (
-                    <Link
-                      to={item.href}
-                      className={`flex items-center space-x-3 px-4 py-4 rounded-xl font-medium transition-all duration-300 relative overflow-hidden w-full text-left ${
-                        active 
-                          ? 'text-primary-700 bg-primary-100' 
-                          : 'text-foreground hover:text-primary-600 hover:bg-primary-50/60'
-                      }`}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <span className={`text-lg transition-all duration-300 ${active ? 'scale-110' : ''}`}>
-                        {item.icon}
-                      </span>
-                      <span className="relative z-10 font-semibold">{item.label}</span>
-                      
-                      {/* Active indicator - left border */}
-                      {active && (
-                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-600 to-accent-600 rounded-r-full"></div>
-                      )}
-                      
-                      {/* Hover effect */}
-                      {!active && (
-                        <div className="absolute inset-0 bg-primary-50/40 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
-                      )}
-                      
-                      {/* Pulse effect for active state */}
-                      {active && (
-                        <div className="absolute inset-0 bg-primary-100/30 rounded-xl animate-pulse"></div>
-                      )}
-                    </Link>
-                  )}
-                </div>
-              );
-            })}
-            
-            {/* Mobile CTA Buttons */}
-            <div className="pt-4 space-y-3">
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="w-full border-primary-200 text-primary-700 hover:bg-primary-50 hover:border-primary-300 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
-              >
-                Get Quote
-              </Button>
-              <Button 
-                variant="default" 
-                size="sm"
-                className="w-full bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white border-0 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-                onClick={() => handleHashClick('#contact')}
-              >
-                Start Project
-              </Button>
-            </div>
-          </div>
+          </button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      <div
+        ref={menuRef}
+        style={{ maxHeight, transition: 'max-height 0.5s ease-in-out' }}
+        className="lg:hidden overflow-hidden bg-gradient-to-b from-dark-blue/95 to-dark-blue/80 animate-gradient-shift"
+      >
+        <nav className="flex flex-col space-y-2 p-4">
+          {navigationItems.map((item) => (
+            <Link
+              key={item.label}
+              to={item.href}
+              className={`text-white py-2 font-medium rounded hover:bg-primary-green/30 transition transform hover:scale-105 ${
+                isActive(item.href) ? 'underline text-primary-green' : ''
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+
+          {/* Dark Mode Toggle (Mobile) */}
+          <button
+            type="button"
+            aria-label="Toggle dark mode"
+            onClick={() => setIsDark((v) => !v)}
+            className="mt-4 inline-flex h-8 w-14 items-center rounded-full bg-white/20 ring-1 ring-white/30 shadow-inner transition-colors duration-300 hover:bg-white/30"
+          >
+            <span
+              className={`inline-block h-6 w-6 rounded-full bg-white shadow-md transition-transform duration-300 ${
+                isDark ? 'translate-x-6' : 'translate-x-1'
+              }`}
+            ></span>
+          </button>
+
+          {/* Get a Quote CTA */}
+          <Link to="/contact" className="mt-4 w-full">
+            <Button variant="default" size="sm" className="w-full shadow-soft hover:scale-105 animate-pulse-slow">
+              Get a Quote
+            </Button>
+          </Link>
+        </nav>
+      </div>
+
+      {/* Animated Gradient Accent Bar */}
+      <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary-green via-white/40 to-light-green opacity-70 animate-gradient-shift" />
     </header>
   );
-};
+}
 
 export default Header;
