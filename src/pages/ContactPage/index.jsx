@@ -75,7 +75,7 @@ const ContactPage = () => {
           </div>
           {/* Subtle background image overlay */}
           <div className="absolute inset-0 z-[1] pointer-events-none opacity-20">
-            <img src="public/assets/images/m2.png" alt="Background Overlay" className="w-full h-full object-cover animate-image-float" />
+            <img src="/assets/images/m2.png" alt="Background Overlay" className="w-full h-full object-cover animate-image-float" />
           </div>
 
           <div className="max-w-2xl mx-auto px-6 text-center relative">

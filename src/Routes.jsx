@@ -13,7 +13,7 @@ import Careers from './pages/Careers';
 
 const Routes = () => {
   return (
-    <BrowserRouter basename="/veenus">
+    <BrowserRouter basename="/veenus_new-">
       <ErrorBoundary>
       <ScrollToTop />
       <RouterRoutes>

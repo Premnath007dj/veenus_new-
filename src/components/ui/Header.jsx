@@ -69,7 +69,7 @@ function Header() {
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-3 animate-image-float">
           <img
-            src="public/assets/images/Veenus_nova_logo.jpg"
+            src="/assets/images/Veenus_nova_logo.jpg"
             alt="Veenus Nova Innovation Centre Logo"
             className="w-10 h-10 rounded-lg object-cover shadow-md"
           />
