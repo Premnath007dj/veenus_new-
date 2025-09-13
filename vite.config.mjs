@@ -5,7 +5,7 @@ import tagger from "@dhiwise/component-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base :"/veenus_new-/",
+  base :"/veenus/",
   // <-- Add this line
   build: {
     outDir: "dist",
