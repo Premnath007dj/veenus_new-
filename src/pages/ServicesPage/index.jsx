@@ -33,7 +33,7 @@ const ServicesPage = () => {
       ctx.save();
       ctx.translate(canvas.width / 2, canvas.height / 2);
       ctx.rotate(angle);
-      ctx.fillStyle = 'rgba(26, 35, 126, 0.5)'; // dark-blue/40
+      ctx.fillStyle = 'rgba(41, 121, 255, 0.5)'; // Electric Blue
       ctx.fillRect(-50, -50, 100, 100);
       ctx.restore();
       angle += 0.01;
@@ -92,7 +92,7 @@ const ServicesPage = () => {
      
       <main className="relative z-10 pt-20">
         {/* Hero Section */}
-        <section className="relative py-24 bg-gradient-to-br from-dark-blue via-dark-blue to-primary-green overflow-hidden">
+        <section className="relative py-24 bg-gradient-to-br from-[#212121] via-[#212121] to-[#00C853] overflow-hidden">
           {/* Animated background elements */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-20 left-10 w-4 h-4 bg-white/20 rounded-full animate-pulse" style={{ animationDelay: '0s' }} />
@@ -136,7 +136,7 @@ const ServicesPage = () => {
           {/* Themed section background */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute inset-0 opacity-[0.06]" style={{
-              backgroundImage: 'radial-gradient(#1A237E 1px, transparent 1px)',
+              backgroundImage: 'radial-gradient(#2979FF 1px, transparent 1px)',
               backgroundSize: '28px 28px',
             }} />
             <div className="absolute inset-0 bg-gradient-to-b from-light-beige via-transparent to-white" />

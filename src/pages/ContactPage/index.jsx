@@ -70,7 +70,7 @@ const ContactPage = () => {
         <main className="relative z-10 py-24">
           {/* Themed background */}
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(#1A237E 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
+            <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(#2979FF 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
             <div className="absolute inset-0 bg-gradient-to-b from-light-beige via-transparent to-white" />
           </div>
           {/* Subtle background image overlay */}
@@ -95,7 +95,7 @@ const ContactPage = () => {
   return (
     <>
       <Header />
-      <section className="relative py-24 bg-gradient-to-br from-dark-blue via-dark-blue to-primary-green overflow-hidden">
+      <section className="relative py-24 bg-gradient-to-br from-[#212121] via-[#212121] to-[#00C853] overflow-hidden">
         {/* Animated motor/engineering background */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {/* Subtle background image overlay */}
@@ -127,7 +127,7 @@ const ContactPage = () => {
                 Get in <span className="text-light-green">Touch</span>
               </h1>
               <div className={`mx-auto h-1 w-32 bg-gradient-to-r from-light-green to-white rounded-full mb-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`} />
-              <p className={`text-xl lg:text-2xl text-gray-200 max-w-4xl mx-auto mb-12 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <p className={`text-xl lg:text-2xl text-[#F5F5F5] max-w-4xl mx-auto mb-12 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 We'd love to hear from you! Reach out to us for inquiries, collaborations, or just to say hello.
               </p>
             </div>
@@ -151,7 +151,7 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <h3 className="text-2xl font-bold text-dark-blue">Send us a Message</h3>
-                      <p className="text-gray-500 text-sm">We'll get back to you within 24 hours</p>
+                      <p className="text-[#212121]/80 text-sm">We'll get back to you within 24 hours</p>
                     </div>
                   </div>
                   
@@ -159,7 +159,7 @@ const ContactPage = () => {
                     {/* Name and Email Row */}
                     <div className="grid sm:grid-cols-2 gap-6">
                       <div className="group">
-                        <label htmlFor="name" className="block text-sm font-semibold text-dark-blue mb-2 group-focus-within:text-primary-green transition-colors duration-200">
+                        <label htmlFor="name" className="block text-sm font-semibold text-dark-blue mb-2 transition-colors duration-200">
                           Full Name
                         </label>
                         <div className="relative">
@@ -169,16 +169,15 @@ const ContactPage = () => {
                             name="name" 
                             value={formData.name} 
                             onChange={handleInputChange} 
-                            className={`w-full px-4 py-4 bg-gray-50 border-2 rounded-lg shadow-soft transition-all duration-300 focus:ring-4 focus:ring-primary-green/20 focus:border-primary-green focus:bg-white hover:border-primary-green/50 ${errors.name ? 'border-red-400 bg-red-50' : 'border-light-green'}`}
+                            className={`w-full px-4 py-4 bg-gray-50 border-2 rounded-lg shadow-soft transition-all duration-300 ${errors.name ? 'border-red-400 bg-red-50' : 'border-light-green'}`}
                             placeholder="Enter your full name"
                           />
-                          <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary-green/5 to-light-green/5 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
                         </div>
                         {errors.name && <p className="text-sm text-red-500 mt-2 flex items-center"><Icon name="AlertCircle" className="w-4 h-4 mr-1" />{errors.name}</p>}
                       </div>
                       
                       <div className="group">
-                        <label htmlFor="email" className="block text-sm font-semibold text-dark-blue mb-2 group-focus-within:text-primary-green transition-colors duration-200">
+                        <label htmlFor="email" className="block text-sm font-semibold text-dark-blue mb-2 transition-colors duration-200">
                           Email Address
                         </label>
                         <div className="relative">
@@ -188,10 +187,9 @@ const ContactPage = () => {
                             name="email" 
                             value={formData.email} 
                             onChange={handleInputChange} 
-                            className={`w-full px-4 py-4 bg-gray-50 border-2 rounded-lg shadow-soft transition-all duration-300 focus:ring-4 focus:ring-primary-green/20 focus:border-primary-green focus:bg-white hover:border-primary-green/50 ${errors.email ? 'border-red-400 bg-red-50' : 'border-light-green'}`}
+                            className={`w-full px-4 py-4 bg-gray-50 border-2 rounded-lg shadow-soft transition-all duration-300 ${errors.email ? 'border-red-400 bg-red-50' : 'border-light-green'}`}
                             placeholder="your.email@example.com"
                           />
-                          <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary-green/5 to-light-green/5 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
                         </div>
                         {errors.email && <p className="text-sm text-red-500 mt-2 flex items-center"><Icon name="AlertCircle" className="w-4 h-4 mr-1" />{errors.email}</p>}
                       </div>
@@ -199,7 +197,7 @@ const ContactPage = () => {
                     
                     {/* Subject Field */}
                     <div className="group">
-                      <label htmlFor="subject" className="block text-sm font-semibold text-dark-blue mb-2 group-focus-within:text-primary-green transition-colors duration-200">
+                      <label htmlFor="subject" className="block text-sm font-semibold text-dark-blue mb-2 transition-colors duration-200">
                         Subject
                       </label>
                       <div className="relative">
@@ -209,17 +207,16 @@ const ContactPage = () => {
                           name="subject" 
                           value={formData.subject} 
                           onChange={handleInputChange} 
-                          className={`w-full px-4 py-4 bg-gray-50 border-2 rounded-lg shadow-soft transition-all duration-300 focus:ring-4 focus:ring-primary-green/20 focus:border-primary-green focus:bg-white hover:border-primary-green/50 ${errors.subject ? 'border-red-400 bg-red-50' : 'border-light-green'}`}
+                          className={`w-full px-4 py-4 bg-gray-50 border-2 rounded-lg shadow-soft transition-all duration-300 ${errors.subject ? 'border-red-400 bg-red-50' : 'border-light-green'}`}
                           placeholder="What's this about?"
                         />
-                        <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary-green/5 to-light-green/5 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
                       </div>
                       {errors.subject && <p className="text-sm text-red-500 mt-2 flex items-center"><Icon name="AlertCircle" className="w-4 h-4 mr-1" />{errors.subject}</p>}
                     </div>
                     
                     {/* Message Field */}
                     <div className="group">
-                      <label htmlFor="message" className="block text-sm font-semibold text-dark-blue mb-2 group-focus-within:text-primary-green transition-colors duration-200">
+                      <label htmlFor="message" className="block text-sm font-semibold text-dark-blue mb-2 transition-colors duration-200">
                         Message
                       </label>
                       <div className="relative">
@@ -229,10 +226,9 @@ const ContactPage = () => {
                           rows="6" 
                           value={formData.message} 
                           onChange={handleInputChange} 
-                          className={`w-full px-4 py-4 bg-gray-50 border-2 rounded-lg shadow-soft transition-all duration-300 focus:ring-4 focus:ring-primary-green/20 focus:border-primary-green focus:bg-white hover:border-primary-green/50 resize-none ${errors.message ? 'border-red-400 bg-red-50' : 'border-light-green'}`}
+                          className={`w-full px-4 py-4 bg-gray-50 border-2 rounded-lg shadow-soft transition-all duration-300 resize-none ${errors.message ? 'border-red-400 bg-red-50' : 'border-light-green'}`}
                           placeholder="Tell us about your project or inquiry..."
                         />
-                        <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary-green/5 to-light-green/5 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
                       </div>
                       {errors.message && <p className="text-sm text-red-500 mt-2 flex items-center"><Icon name="AlertCircle" className="w-4 h-4 mr-1" />{errors.message}</p>}
                     </div>
@@ -286,7 +282,7 @@ const ContactPage = () => {
                         <Icon name="Mail" className="w-4 h-4 text-primary-green" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500">Email</p>
+                        <p className="text-sm text-[#212121]/80">Email</p>
                         <a href="mailto:Veenusnova369@gmail.com" className="font-semibold text-dark-blue hover:underline">
                           Veenusnova369@gmail.com
                         </a>
@@ -297,7 +293,7 @@ const ContactPage = () => {
                         <Icon name="Phone" className="w-4 h-4 text-primary-green" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500">Phone</p>
+                        <p className="text-sm text-[#212121]/80">Phone</p>
                         <a href="https://wa.me/918220861598" target="_blank" rel="noopener noreferrer" className="font-semibold text-dark-blue hover:underline flex items-center">
                           +918220861598
                           <Icon name="ExternalLink" className="w-4 h-4 ml-2" />

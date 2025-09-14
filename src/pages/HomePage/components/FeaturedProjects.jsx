@@ -53,16 +53,16 @@ const FeaturedProjects = () => {
       {/* Section background accents */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 opacity-[0.05]" style={{
-          background: 'linear-gradient(90deg, rgba(26,35,126,0.12) 1px, transparent 1px), linear-gradient(rgba(26,35,126,0.12) 1px, transparent 1px)',
+          background: 'linear-gradient(90deg, rgba(41, 121, 255, 0.12) 1px, transparent 1px), linear-gradient(rgba(41, 121, 255, 0.12) 1px, transparent 1px)',
           backgroundSize: '44px 44px',
         }} />
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white via-transparent to-light-beige" />
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-soft-cool-gray via-transparent to-soft-cool-gray" />
       </div>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="heading-2 mb-3">Featured Projects</h2>
-          <div className="mx-auto h-1 w-24 bg-gradient-to-r from-primary-green to-light-green rounded-full mb-4" />
-          <p className="muted text-lg max-w-3xl mx-auto">We have a proven track record of success across a range of demanding applications.</p>
+          <h2 className="text-deep-charcoal text-3xl font-bold mb-3">Featured Projects</h2>
+          <div className="mx-auto h-1 w-24 bg-gradient-to-r from-energetic-green to-electric-blue rounded-full mb-4" />
+          <p className="text-deep-charcoal text-lg max-w-3xl mx-auto">We have a proven track record of success across a range of demanding applications.</p>
         </div>
         <div className="embla overflow-hidden" ref={emblaRef}>
           <div className="embla__container flex gap-8">
@@ -78,18 +78,18 @@ const FeaturedProjects = () => {
                         className="w-full h-64 object-cover transition-transform duration-300 will-change-transform" 
                       />
                       {/* soft overlay on hover */}
-                      <div className="absolute inset-0 bg-dark-blue/0 group-hover:bg-dark-blue/10 transition-colors duration-300" />
+                      <div className="absolute inset-0 bg-deep-charcoal/0 group-hover:bg-deep-charcoal/10 transition-colors duration-300" />
                       {/* corner accent */}
-                      <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-primary-green to-light-green opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-energetic-green to-electric-blue opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                     <div className="p-6">
-                      <p className="text-sm text-primary-green font-semibold mb-1">{project.category}</p>
-                      <h3 className="text-xl font-bold text-dark-blue mb-2 group-hover:text-primary-green transition-colors">{project.title}</h3>
-                      <p className="text-primary-green font-semibold flex items-center">View Project <Icon name="ArrowRight" className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" /></p>
+                      <p className="text-sm text-energetic-green font-semibold mb-1">{project.category}</p>
+                      <h3 className="text-xl font-bold text-deep-charcoal mb-2 group-hover:text-energetic-green transition-colors">{project.title}</h3>
+                      <p className="text-energetic-green font-semibold flex items-center">View Project <Icon name="ArrowRight" className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" /></p>
                     </div>
                   </Link>
                   {/* subtle morph ring */}
-                  <div className="pointer-events-none absolute -bottom-8 -right-8 h-32 w-32 rounded-full bg-gradient-to-br from-primary-green/10 to-light-green/10 blur-xl group-hover:scale-110 transition-transform duration-500" />
+                  <div className="pointer-events-none absolute -bottom-8 -right-8 h-32 w-32 rounded-full bg-gradient-to-br from-energetic-green/10 to-electric-blue/10 blur-xl group-hover:scale-110 transition-transform duration-500" />
                 </div>
               </div>
             ))}

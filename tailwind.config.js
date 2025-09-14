@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
   content: [
     './pages/**/*.{js,jsx}',
     './components/**/*.{js,jsx}',
@@ -21,17 +20,41 @@ module.exports = {
     },
     extend: {
       colors: {
+        'energetic-green': '#00C853',
+        'deep-charcoal': '#212121',
+        'electric-blue': '#2979FF',
+        'soft-cool-gray': '#F5F5F5',
+        'vibrant-coral': '#FF6D00',
+
+        // Using CSS variables for themeable colors
+        background: "var(--color-bg-primary)",
+        foreground: "var(--color-text-primary)",
+        'primary-green': 'var(--primary-green)',
+        'dark-blue': 'var(--dark-blue)',
+        'light-green': 'var(--light-green)',
+        'light-beige': 'var(--light-beige)',
+        white: 'var(--white)',
+        gray: { DEFAULT: 'var(--gray)' },
+
+        // Semantic colors derived from CSS variables
+        'header-bg': 'var(--color-header-bg)',
+        'header-border': 'var(--color-header-border)',
+        'header-scrolled-bg': 'var(--color-header-scrolled-bg)',
+        'header-scrolled-border': 'var(--color-header-scrolled-border)',
+        'link-hover': 'var(--color-link-hover)',
+        'link-active': 'var(--color-link-active)',
+        'toggle-bg': 'var(--color-toggle-bg)',
+        'toggle-ring': 'var(--color-toggle-ring)',
+        'toggle-handle': 'var(--color-toggle-handle)',
+        'button-text': 'var(--color-button-text)',
+        'button-bg': 'var(--color-button-bg)',
+        'button-shadow': 'var(--color-button-shadow)',
+        'shadow-soft': 'var(--color-shadow-soft)',
+
+        // Existing colors that might not need to be themeable or are already handled by CSS vars
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        'primary-green': '#4CAF50',
-        'dark-blue': '#1A237E',
-        'light-green': '#A5D6A7',
-        'light-beige': '#F5F5DC',
-        white: '#FFFFFF',
-        gray: { DEFAULT: '#757575' },
         primary: { DEFAULT: "hsl(var(--primary))", foreground: "hsl(var(--primary-foreground))" },
         secondary: { DEFAULT: "hsl(var(--secondary))", foreground: "hsl(var(--secondary-foreground))" },
         destructive: { DEFAULT: "hsl(var(--destructive))", foreground: "hsl(var(--destructive-foreground))" },
@@ -41,7 +64,7 @@ module.exports = {
         card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
 
         // Optional semantic colors
-        success: '#4CAF50',
+        success: 'var(--primary-green)', // Map to primary-green
         warning: '#FF9800',
         error: '#F44336',
         info: '#2196F3',
@@ -67,7 +90,7 @@ module.exports = {
         bold: '700',
       },
       boxShadow: {
-        soft: '0 4px 8px rgba(0,0,0,0.1)',
+        soft: 'var(--color-shadow-soft)', // Use CSS variable
       },
       letterSpacing: {
         tightest: '-0.05em',
@@ -96,7 +119,7 @@ module.exports = {
         "pulse-slow": { "0%, 100%": { opacity: "1" }, "50%": { opacity: "0.5" } },
         "pulse-bg": { "0%, 100%": { backgroundColor: "rgba(0, 123, 255, 0.05)" }, "50%": { backgroundColor: "rgba(0, 123, 255, 0.15)" } },
         "spin-slow": { "0%": { transform: "rotate(0deg)" }, "100%": { transform: "rotate(360deg)" } },
-        "spin-slower": { "0%": { transform: "rotate(0deg)" }, "100%": { transform: "rotate(360deg)" } },
+        "spin-slower": { "0%": { transform: "rotate(0deg)" }, "100%": { transform: "rotate(-360deg)" } },
         "spin-slowest": { "0%": { transform: "rotate(0deg)" }, "100%": { transform: "rotate(360deg)" } },
         "progress": { "0%": { width: "0%" }, "100%": { width: "100%" } },
         "image-float": { "0%,100%": { transform: 'translateY(0px) rotate(0deg)' }, "50%": { transform: 'translateY(-5px) rotate(1deg)' } },
@@ -112,7 +135,7 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.2s ease-out",
+        "fade-in": "fade-in 1s ease-out",
         "slide-in": "slide-in 0.2s ease-out",
         "float": "float 6s ease-in-out infinite",
         "gradient-shift": "gradient-shift 15s ease infinite",

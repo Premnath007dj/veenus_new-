@@ -22,7 +22,7 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className="bg-soft-cool-gray">
         <HeroSection 
           onContactClick={handleContactClick} 
           

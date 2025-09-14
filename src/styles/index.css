@@ -5,31 +5,74 @@
 @tailwind utilities;
 
 :root {
-  --primary-green: #4CAF50;
-  --dark-blue: #1A237E;
-  --light-green: #A5D6A7;
-  --light-beige: #F5F5DC;
+  /* Base Colors */
+  --primary-green: #00C853;
+  --dark-blue: #212121; /* Changed to Deep Charcoal for general dark text/elements */
+  --light-green: #00C853; /* Changed to Energetic Green */
+  --light-beige: #F5F5F5; /* Changed to Soft Cool Gray */
   --white: #FFFFFF;
-  --gray: #757575;
+  --gray: #212121; /* Changed to Deep Charcoal */
+  --black: #212121; /* Changed to Deep Charcoal */
 
-  --shadow-soft: 0 4px 8px rgba(0,0,0,0.1);
+  /* Semantic Colors - Light Theme Defaults */
+  --color-bg-primary: var(--light-beige); /* Soft Cool Gray */
+  --color-text-primary: var(--dark-blue); /* Deep Charcoal */
+  --color-text-secondary: var(--gray);   /* Deep Charcoal */
+  --color-header-bg: rgba(33, 33, 33, 0.9); /* Deep Charcoal */
+  --color-header-border: rgba(41, 121, 255, 0.3); /* Electric Blue */
+  --color-header-scrolled-bg: rgba(33, 33, 33, 0.95); /* Deep Charcoal */
+  --color-header-scrolled-border: rgba(41, 121, 255, 0.4); /* Electric Blue */
+  --color-link-hover: var(--primary-green); /* Energetic Green */
+  --color-link-active: var(--primary-green); /* Energetic Green */
+  --color-toggle-bg: rgba(33, 33, 33, 0.1); /* Deep Charcoal */
+  --color-toggle-ring: rgba(33, 33, 33, 0.2); /* Deep Charcoal */
+  --color-toggle-handle: var(--white);
+  --color-button-text: var(--white);
+  --color-button-bg: var(--primary-green); /* Energetic Green */
+  --color-button-shadow: rgba(33, 33, 33, 0.2); /* Deep Charcoal */
+  --color-shadow-soft: 0 4px 8px rgba(33,33,33,0.1); /* Deep Charcoal */
 
   /* RGB values for animated background */
-  --primary-rgb: 76, 175, 80; /* Corresponds to --primary-green */
-  --accent-rgb: 26, 188, 156; /* A teal-like accent color */
-  --dark-surface-rgb: 10, 10, 20; /* Very dark blue for background */
+  --primary-rgb: 0, 200, 83; /* Energetic Green */
+  --accent-rgb: 41, 121, 255; /* Electric Blue */
+  --dark-surface-rgb: 33, 33, 33; /* Deep Charcoal */
+}
+
+/* Dark Mode Overrides */
+html.dark {
+  --color-bg-primary: #212121; /* Deep Charcoal */
+  --color-text-primary: var(--white);
+  --color-text-secondary: var(--light-green); /* Energetic Green */
+  --color-header-bg: rgba(33, 33, 33, 0.8); /* Deep Charcoal */
+  --color-header-border: rgba(41, 121, 255, 0.3); /* Electric Blue */
+  --color-header-scrolled-bg: rgba(33, 33, 33, 0.9); /* Deep Charcoal */
+  --color-header-scrolled-border: rgba(41, 121, 255, 0.4); /* Electric Blue */
+  --color-link-hover: var(--light-green); /* Energetic Green */
+  --color-link-active: var(--light-green); /* Energetic Green */
+  --color-toggle-bg: rgba(255, 255, 255, 0.2);
+  --color-toggle-ring: rgba(255, 255, 255, 0.3);
+  --color-toggle-handle: var(--white);
+  --color-button-text: var(--dark-blue); /* Deep Charcoal */
+  --color-button-bg: var(--light-green); /* Energetic Green */
+  --color-button-shadow: rgba(0, 200, 83, 0.3); /* Energetic Green */
+
+  /* Ensure animated background colors are dark-friendly */
+  --primary-rgb: 0, 200, 83; /* Energetic Green */
+  --accent-rgb: 41, 121, 255; /* Electric Blue */
+  --dark-surface-rgb: 33, 33, 33; /* Deep Charcoal */
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', 'Open Sans', sans-serif;
-  background-color: var(--light-beige);
-  color: var(--dark-blue);
+  background-color: var(--color-bg-primary); /* Use semantic variable */
+  color: var(--color-text-primary); /* Use semantic variable */
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
 h1 {
@@ -53,7 +96,7 @@ h2 {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--light-beige);
+  background: var(--color-bg-primary); /* Use semantic variable */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -84,15 +127,16 @@ h2 {
 }
 
 .card {
-  background: var(--white);
-  border: 1px solid rgba(76, 175, 80, 0.15);
+  background: var(--white); /* This might need to be a semantic variable too */
+  border: 1px solid var(--color-header-border); /* Use semantic variable */
   border-radius: 1rem;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--color-shadow-soft); /* Use semantic variable */
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.heading-1 { font-size: 48px; color: var(--dark-blue); font-weight: 700; }
-.heading-2 { font-size: 32px; color: var(--dark-blue); font-weight: 600; }
-.muted { color: var(--gray); }
+.heading-1 { color: var(--color-text-primary); } /* Use semantic variable */
+.heading-2 { color: var(--color-text-primary); } /* Use semantic variable */
+.muted { color: var(--color-text-secondary); } /* Use semantic variable */
 
 /* Roadmap reveal */
 .roadmap-item .roadmap-card {
@@ -111,7 +155,7 @@ h2 {
 
 .animated-background {
   background-color: rgb(var(--dark-surface-rgb));
-  background-image: 
+  background-image:
     radial-gradient(rgba(var(--primary-rgb), 0.1) 1px, transparent 1px),
     radial-gradient(rgba(var(--accent-rgb), 0.1) 1px, transparent 1px);
   background-size: 40px 40px;

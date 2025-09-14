@@ -8,14 +8,15 @@ const Button = React.forwardRef(({
   asChild = false, 
   ...props 
 }, ref) => {
-  const baseClasses = "inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-green focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+  const baseClasses = "inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-energetic-green focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
   
   const variants = {
     // Primary CTA: green background, white text, hover pulse
-    default: "bg-primary-green text-white hover:bg-light-green hover:animate-pulse shadow-soft",
+    default: "bg-energetic-green text-white hover:bg-energetic-green/90 hover:animate-pulse shadow-soft",
+    electric: "bg-electric-blue text-white hover:bg-electric-blue/90 shadow-lg hover:shadow-xl",
     destructive: "bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white shadow-lg hover:shadow-xl border-0",
     // Secondary CTA: transparent, green border, text dark blue
-    outline: "border-2 border-primary-green bg-transparent text-dark-blue hover:bg-light-green/40",
+    outline: "border-2 border-energetic-green bg-transparent text-deep-charcoal hover:bg-energetic-green/40",
     secondary: "bg-transparent border-2 border-primary-green text-dark-blue hover:bg-light-green/40",
     ghost: "hover:bg-primary-50 hover:text-primary-700 text-primary-600",
     link: "text-primary-600 underline-offset-4 hover:underline",
