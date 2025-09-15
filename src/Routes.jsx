@@ -21,11 +21,11 @@ const Routes = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/why-choose-us" element={<WhyChooseUsPage />} />
+        {/* <Route path="/why-choose-us" element={<WhyChooseUsPage />} /> */}
         <Route path="/contact" element={<ContactPage />} />
         
         <Route path="/tech-zone" element={<TechZone />} />
-        <Route path="/careers" element={<Careers />} />
+        {/* <Route path="/careers" element={<Careers />} /> */}
         <Route path="*" element={<NotFound />} />
       </RouterRoutes>
       </ErrorBoundary>

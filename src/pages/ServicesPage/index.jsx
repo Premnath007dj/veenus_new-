@@ -54,27 +54,47 @@ const ServicesPage = () => {
     setIsVisible(true);
   }, []);
 
-  const servicesData = [
-    {
-      id: 'engineering',
-      title: 'Engineering Services',
-      icon: 'Settings',
-      services: [
-        { name: 'Competitive & Performance Benchmarking', description: 'As your partner, we analyze the competitive landscape to position your product for optimal performance and cost-effectiveness.', details: 'We provide a collaborative analysis of competitor products, evaluate key performance metrics, and deliver actionable recommendations to give you a market edge.' },
-        { name: 'PMSM & BLDC Motor Simulation', description: 'Our PMSM motor simulation consulting includes FEMM analysis, back EMF, and thermal analysis to validate and optimize your design.', details: 'We leverage advanced FEA for in-depth magnetic field analysis, thermal modeling, and performance prediction, ensuring your motor design is optimized from the start.' },
-        { name: 'Prototype Electric Motor Development', description: 'We specialize in prototype electric motor development, offering an agile, end-to-end service from concept to a fully functional and validated prototype.', details: 'Our collaborative process covers the complete design lifecycle, including mechanical design, electromagnetic optimization, and thermal management for your custom motor.' },
-        { name: 'Validation & Technical Documentation', description: 'We provide comprehensive validation testing and documentation, including NVH analysis, to ensure your motor meets all specifications.', details: 'Our partnership includes providing thorough documentation for every stage, from design specifications and manufacturing guidelines to complete validation procedures.' },
-      ]
-    },
-    {
-      id: 'software',
-      title: 'Software Solutions',
-      icon: 'Cpu',
-      services: [
-        { name: 'web and app devolopment ', description: 'We develop the software that controls and interacts with your motor system, from embedded firmware to user-facing applications.', details: 'Our team can develop custom control algorithms, embedded firmware, and user applications to ensure your motor system performs flawlessly.' },
-      ]
-    }
-  ];
+ const servicesData = [
+  {
+    id: 'engineering',
+    title: 'Engineering Services',
+    icon: 'Settings',
+    services: [
+      { 
+        name: 'Competitive & Performance Benchmarking', 
+        description: 'As your partner, we analyze the competitive landscape to position your product for optimal performance and cost-effectiveness.', 
+        details: 'We provide a collaborative analysis of competitor products, evaluate key performance metrics, and deliver actionable recommendations to give you a market edge.' 
+      },
+      { 
+        name: 'PMSM, BLDC & SynRM Motor Simulation', 
+        description: 'We provide PMSM, BLDC, and SynRM motor simulation, using FEMM, back EMF, and thermal analysis to ensure your designs are fully optimized.', 
+        details: 'We leverage advanced FEA for in-depth magnetic field analysis, thermal modeling, and performance prediction, ensuring your motor design is optimized from the start.' 
+      },
+      { 
+        name: 'Prototype Electric Motor Development', 
+        description: 'We specialize in prototype electric motor development, offering an agile, end-to-end service from concept to a fully functional and validated prototype.', 
+        details: 'Our collaborative process covers the complete design lifecycle, including mechanical design, electromagnetic optimization, and thermal management for your custom motor.' 
+      },
+      { 
+        name: 'Validation & Technical Documentation', 
+        description: 'We provide comprehensive validation testing and documentation, including NVH analysis, to ensure your motor meets all specifications.', 
+        details: 'Our partnership includes providing thorough documentation for every stage, from design specifications and manufacturing guidelines to complete validation procedures.' 
+      },
+    ]
+  },
+  {
+    id: 'software',
+    title: 'Software Solutions',
+    icon: 'Cpu',
+    services: [
+      { 
+        name: 'Web and App Development', 
+        description: 'We provide end-to-end web and mobile app development services, delivering scalable, secure, and user-friendly solutions.', 
+        details: 'We offer responsive and SEO-friendly websites, intuitive iOS and Android apps with smooth UX/UI, secure backend and API integration, and ongoing maintenance and support for optimal performance.' 
+      },
+    ]
+  }
+];
 
   const filteredServices = activeCategory === 'all' 
     ? servicesData.flatMap(cat => cat.services.map(s => ({...s, category: cat.title})))

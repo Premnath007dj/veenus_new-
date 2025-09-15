@@ -20,8 +20,6 @@
   --color-text-secondary: var(--gray);   /* Deep Charcoal */
   --color-header-bg: rgba(33, 33, 33, 0.9); /* Deep Charcoal */
   --color-header-border: rgba(41, 121, 255, 0.3); /* Electric Blue */
-  --color-header-scrolled-bg: rgba(33, 33, 33, 0.95); /* Deep Charcoal */
-  --color-header-scrolled-border: rgba(41, 121, 255, 0.4); /* Electric Blue */
   --color-link-hover: var(--primary-green); /* Energetic Green */
   --color-link-active: var(--primary-green); /* Energetic Green */
   --color-toggle-bg: rgba(33, 33, 33, 0.1); /* Deep Charcoal */
@@ -45,8 +43,6 @@ html.dark {
   --color-text-secondary: var(--light-green); /* Energetic Green */
   --color-header-bg: rgba(33, 33, 33, 0.8); /* Deep Charcoal */
   --color-header-border: rgba(41, 121, 255, 0.3); /* Electric Blue */
-  --color-header-scrolled-bg: rgba(33, 33, 33, 0.9); /* Deep Charcoal */
-  --color-header-scrolled-border: rgba(41, 121, 255, 0.4); /* Electric Blue */
   --color-link-hover: var(--light-green); /* Energetic Green */
   --color-link-active: var(--light-green); /* Energetic Green */
   --color-toggle-bg: rgba(255, 255, 255, 0.2);
@@ -138,7 +134,12 @@ h2 {
 .heading-2 { color: var(--color-text-primary); } /* Use semantic variable */
 .muted { color: var(--color-text-secondary); } /* Use semantic variable */
 
-/* Roadmap reveal */
+/* Animation reveal */
+.in-view {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
 .roadmap-item .roadmap-card {
   opacity: 0;
   transform: translateY(12px);
@@ -149,21 +150,270 @@ h2 {
   transform: translateY(0);
 }
 
+.roadmap-item.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .text-shadow-custom {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.animated-background {
-  background-color: rgb(var(--dark-surface-rgb));
-  background-image:
-    radial-gradient(rgba(var(--primary-rgb), 0.1) 1px, transparent 1px),
-    radial-gradient(rgba(var(--accent-rgb), 0.1) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: 0 0, 20px 20px;
-  animation: background-flow 30s linear infinite;
+/* Advanced Roadmap Animations */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px 0px rgba(0, 200, 83, 0.2); }
+  50% { box-shadow: 0 0 20px 10px rgba(0, 200, 83, 0.5); }
 }
 
-@keyframes background-flow {
-  from { background-position: 0 0, 20px 20px; }
-  to { background-position: 40px 40px, 60px 60px; }
+.group:hover .pulse-on-hover {
+  animation: pulse-glow 1.5s infinite;
+}
+
+@keyframes draw-line {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+.timeline-line-animated {
+  animation: draw-line 2s ease-out forwards;
+  transform-origin: top;
+}
+
+/* Green Reveal Background */
+.reveal-background-green {
+  position: relative;
+  z-index: 1;
+}
+
+.reveal-background-green::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, #00E676, var(--primary-green));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 2s ease-out;
+  z-index: -1;
+}
+
+.reveal-background-green.in-view::before {
+  transform: scaleY(1);
+}
+
+@keyframes pattern-pan {
+  from { background-position: 0 0; }
+  to { background-position: 200px 200px; } /* Increased range */
+}
+
+.animated-pattern-background {
+  background-color: var(--soft-cool-gray); /* Base background color */
+  background-image: radial-gradient(circle, rgba(0, 200, 83, 0.15) 1px, transparent 1px),
+                    radial-gradient(circle, rgba(41, 121, 255, 0.15) 1px, transparent 1px);
+  background-size: 25px 25px; /* Slightly larger pattern cells */
+  animation: pattern-pan 20s linear infinite; /* Slow, continuous animation */
+}
+
+@keyframes grid-pan {
+  from { background-position: 0 0; }
+  to { background-position: 100px 100px; } /* Adjust values for desired speed/direction */
+}
+
+.animated-line-grid-background {
+  background-color: var(--soft-cool-gray); /* Base background color */
+  background-image: linear-gradient(to right, rgba(0, 200, 83, 0.1) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0, 200, 83, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px; /* Size of the grid cells */
+  animation: grid-pan 20s linear infinite; /* Slow, continuous animation */
+}
+
+/* New screen-like background */
+@keyframes grid-pan-subtle {
+  0% { background-position: 0 0; }
+  100% { background-position: 15px 15px; } /* Pan by one grid cell */
+}
+
+.screen-grid-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.03); /* Even more subtle dark overlay */
+  background-image: linear-gradient(to right, rgba(0, 200, 83, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(41, 121, 255, 0.03) 1px, transparent 1px); /* Use both theme colors */
+  background-size: 15px 15px; /* Finer grid */
+  opacity: 0.8; /* Slightly more visible grid */
+  z-index: 0;
+  pointer-events: none;
+  animation: grid-pan-subtle 30s linear infinite; /* Slow, continuous animation */
+}
+
+@keyframes button-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-button-float {
+  animation: button-float 2s ease-in-out infinite;
+}
+
+@keyframes gradient-pan-diagonal {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+}
+
+.animated-gradient-background {
+  background: linear-gradient(135deg, rgba(0, 200, 83, 0.1), rgba(41, 121, 255, 0.1), rgba(0, 200, 83, 0.1));
+  background-size: 400% 400%;
+  animation: gradient-pan-diagonal 20s ease infinite alternate;
+}
+
+@keyframes creative-background-flow {
+  0% { background-position: 0% 0%; } 
+  25% { background-position: 100% 0%; } 
+  50% { background-position: 100% 100%; } 
+  75% { background-position: 0% 100%; } 
+  100% { background-position: 0% 0%; } 
+}
+
+.creative-vision-mission-background {
+  background-color: #1a1a1a; /* Dark base for contrast */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(0, 200, 83, 0.15), transparent 30%),
+    radial-gradient(circle at 85% 50%, rgba(41, 121, 255, 0.15), transparent 30%),
+    radial-gradient(circle at 50% 10%, rgba(0, 200, 83, 0.1), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(41, 121, 255, 0.1), transparent 40%);
+  background-size: 200% 200%; /* Larger size for panning */
+  animation: creative-background-flow 40s linear infinite; /* Slow, continuous animation */
+}
+
+@keyframes shape-float-1 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(20px, 30px) rotate(15deg); }
+}
+
+@keyframes shape-float-2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-25px, -15px) rotate(-10deg); }
+}
+
+@keyframes shape-float-3 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(15px, -20px) rotate(5deg); }
+}
+
+.abstract-shapes-background {
+  background-color: var(--soft-cool-gray); /* Base background color */
+  position: relative;
+  overflow: hidden;
+}
+
+.abstract-shapes-background::before,
+.abstract-shapes-background::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%; /* Make them circular */
+  filter: blur(50px); /* Soft, glowing effect */
+  opacity: 0.3; /* Subtle */
+  z-index: -1;
+}
+
+.abstract-shapes-background::before {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--energetic-green), transparent);
+  top: 10%;
+  left: 5%;
+  animation: shape-float-1 25s ease-in-out infinite alternate;
+}
+
+.abstract-shapes-background::after {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, var(--electric-blue), transparent);
+  bottom: 15%;
+  right: 10%;
+  animation: shape-float-2 30s ease-in-out infinite alternate;
+}
+
+.abstract-shapes-background .shape-3 {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent);
+  filter: blur(40px);
+  opacity: 0.2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: shape-float-3 20s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  50% { transform: translate(50px, 30px) scale(1.1); opacity: 0.5; }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  50% { transform: translate(-40px, -20px) scale(0.9); opacity: 0.2; }
+}
+
+@keyframes orb-float-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.35; }
+  50% { transform: translate(20px, -40px) scale(1.2); opacity: 0.6; }
+}
+
+.glowing-orbs-background {
+  background-color: var(--soft-cool-gray); /* Base background color */
+  position: relative;
+  overflow: hidden;
+}
+
+.glowing-orbs-background .orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px); /* Stronger blur for a softer glow */
+  z-index: -1;
+}
+
+.glowing-orbs-background .orb-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--energetic-green), transparent);
+  top: 5%;
+  left: -10%;
+  animation: orb-float-1 30s ease-in-out infinite alternate;
+}
+
+.glowing-orbs-background .orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--electric-blue), transparent);
+  bottom: -10%;
+  right: -10%;
+  animation: orb-float-2 35s ease-in-out infinite alternate;
+}
+
+.glowing-orbs-background .orb-3 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
+  top: 40%;
+  left: 60%;
+  animation: orb-float-3 25s ease-in-out infinite alternate;
+}
+
+.glowing-orbs-background .orb-4 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 255, 0, 0.3), transparent); /* A subtle yellow/gold orb */
+  bottom: 20%;
+  left: 15%;
+  animation: orb-float-1 20s ease-in-out infinite reverse; /* Reusing animation, but reversed */
 }

@@ -170,7 +170,7 @@ const HeroSection = ({ onContactClick }) => {
               </h1>
 
               <p className="text-xl lg:text-2xl text-soft-cool-gray mb-12 animate-fade-in" style={{ animationDelay: `${words.length * 0.15}s` }}>
-                We work as an extension of your R&D team, providing custom BLDC motor design and PMSM motor simulation consulting to achieve unparalleled efficiency and performance.
+              We work as an extension of your R&D team, providing custom BLDC, PMSM, and SynRM motor design, as well as motor simulation consulting, to achieve unparalleled efficiency and performance.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start items-center animate-fade-in" style={{ animationDelay: `${(words.length + 1) * 0.15}s` }}>
