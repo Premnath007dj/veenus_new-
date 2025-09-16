@@ -155,18 +155,8 @@ const HeroSection = ({ onContactClick }) => {
           {/* Left Half (Text Content) */}
           <div className="lg:text-left text-center p-8">
             <div className="max-w-xl mx-auto">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 leading-tight bg-gradient-to-r from-soft-cool-gray to-energetic-green bg-clip-text text-transparent drop-shadow-lg">
-                {words.map((w, i) => (
-                  <React.Fragment key={`${w}-${i}`}>
-                    <span
-                      className="inline-block animate-fade-in"
-                      style={{ animationDelay: `${i * 0.05}s` }}
-                    >
-                      {w}
-                    </span>
-                    {i < words.length - 1 ? ' ' : ''}
-                  </React.Fragment>
-                ))}
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 leading-tight bg-gradient-to-r from-soft-cool-gray to-energetic-green bg-clip-text text-transparent drop-shadow-lg animate-slide-down-fade">
+                {headline}
               </h1>
 
               <p className="text-xl lg:text-2xl text-soft-cool-gray mb-12 animate-fade-in" style={{ animationDelay: `${words.length * 0.15}s` }}>

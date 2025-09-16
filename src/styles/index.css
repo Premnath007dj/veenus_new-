@@ -417,3 +417,121 @@ h2 {
   left: 15%;
   animation: orb-float-1 20s ease-in-out infinite reverse; /* Reusing animation, but reversed */
 }
+/* --- Main Section Background --- */
+.glowing-orbs-background-darker {
+  background-color: #1a1a1a; /* A deep, near-black for high contrast */
+  position: relative;
+  overflow: hidden;
+}
+
+.screen-grid-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(to right, rgba(41, 121, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(41, 121, 255, 0.07) 1px, transparent 1px);
+  background-size: 25px 25px;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+/* --- Animated Orbs --- */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px); /* Creates the soft, glowing effect */
+  z-index: -1;
+  opacity: 0.6;
+}
+
+.orb-1 {
+  width: 400px;
+  height: 400px;
+  background-color: rgba(0, 200, 83, 0.3); /* energetic-green */
+  top: 5%;
+  left: -10%;
+  animation: orb-float-1 30s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  background-color: rgba(41, 121, 255, 0.3); /* electric-blue */
+  bottom: -10%;
+  right: -10%;
+  animation: orb-float-2 35s ease-in-out infinite alternate;
+}
+
+.orb-3 {
+  width: 350px;
+  height: 350px;
+  background-color: rgba(0, 200, 83, 0.2); /* energetic-green */
+  top: 40%;
+  right: 30%;
+  animation: orb-float-3 25s ease-in-out infinite alternate;
+}
+
+.orb-4 {
+  width: 200px;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0.1); /* A subtle white orb */
+  bottom: 20%;
+  left: 15%;
+  animation: orb-float-1 20s ease-in-out infinite reverse;
+}
+
+@keyframes orb-float-1 {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(50px, 30px) scale(1.1); }
+}
+
+@keyframes orb-float-2 {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(-40px, -20px) scale(0.9); }
+}
+
+@keyframes orb-float-3 {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(20px, -40px) scale(1.2); }
+}
+
+
+/* --- Card & Text Styles --- */
+.card-glass {
+  background: rgba(30, 41, 59, 0.4); /* Dark, semi-transparent glass */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px); /* Safari support */
+}
+
+.text-shadow-custom {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+
+/* --- Animation & Interactive Effects --- */
+/* This class is added by the AnimatedItem component when it enters the view */
+.in-view {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Animation for the central timeline bar */
+@keyframes draw-line {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+.timeline-line-animated {
+  animation: draw-line 2s ease-out forwards;
+  transform-origin: top;
+}
+
+/* Pulsing glow effect for timeline markers on hover */
+
+
+.pulse-on-hover {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}

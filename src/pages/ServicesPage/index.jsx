@@ -4,7 +4,7 @@ import Header from '../../components/ui/Header';
 import Footer from '../../components/ui/Footer';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
-
+import ImageCarouselCard from '../../components/ui/ImageCarouselCard';
 
 const ServicesPage = () => {
   const [expandedCard, setExpandedCard] = useState(null);
@@ -96,6 +96,26 @@ const ServicesPage = () => {
   }
 ];
 
+
+
+  const motorData = [
+  {
+    name: 'BLDC Motors',
+    image: '/veenus_new-/assets/images/bldc.png',
+    description: 'Brushless DC motors offer high efficiency and reliability, ideal for applications requiring precise control and long operational life.',
+  },
+  {
+    name: 'PMSM Motors',
+    image: '/veenus_new-/assets/images/pmsm.png',
+    description: 'Permanent Magnet Synchronous Motors provide excellent power density and dynamic performance, suitable for high-performance industrial applications.',
+  },
+  {
+    name: 'SynRM Motors',
+    image: '/veenus_new-/assets/images/synrm.png',
+    description: 'Synchronous Reluctance Motors are known for their robust design, high efficiency, and cost-effectiveness, particularly in variable speed drives.',
+  },
+];
+
   const filteredServices = activeCategory === 'all' 
     ? servicesData.flatMap(cat => cat.services.map(s => ({...s, category: cat.title})))
     : servicesData.find(cat => cat.id === activeCategory)?.services.map(s => ({...s, category: servicesData.find(c => c.id === activeCategory).title })) || [];
@@ -112,7 +132,7 @@ const ServicesPage = () => {
      
       <main className="relative z-10 pt-20">
         {/* Hero Section */}
-        <section className="relative py-24 bg-gradient-to-br from-[#212121] via-[#212121] to-[#00C853] overflow-hidden">
+        <section className="relative py-24 bg-gradient-to-br from-[#212121] via-[#212121] to-[#00C853]">
           {/* Animated background elements */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-20 left-10 w-4 h-4 bg-white/20 rounded-full animate-pulse" style={{ animationDelay: '0s' }} />
@@ -141,7 +161,7 @@ const ServicesPage = () => {
           <div className="max-w-7xl mx-auto px-6 relative z-10">
             <div className="text-center text-white">
               <h1 className={`text-5xl lg:text-7xl font-bold mb-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                Our <span className="text-light-green">Services</span>
+                Our <span className="bg-gradient-to-r from-light-green to-blue-500 text-transparent bg-clip-text">Services</span>
               </h1>
               <div className={`mx-auto h-1 w-32 bg-gradient-to-r from-light-green to-white rounded-full mb-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`} />
               <p className={`text-xl lg:text-2xl text-gray-200 max-w-4xl mx-auto mb-12 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -152,7 +172,18 @@ const ServicesPage = () => {
           </div>
         </section>
 
-        <section id="services-content" className="py-24 relative overflow-hidden">
+        
+
+        <section className="py-24 bg-soft-cool-gray">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            
+            <div className="grid md:grid-cols-1 gap-8 justify-items-center">
+              <ImageCarouselCard images={motorData} interval={3000} />
+            </div>
+          </div>
+        </section>
+
+        <section id="services-content" className="py-24 relative">
           {/* Themed section background */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute inset-0 opacity-[0.06]" style={{
@@ -170,7 +201,7 @@ const ServicesPage = () => {
             <div className="grid lg:grid-cols-4 gap-8">
               {/* Sidebar */}
               <aside className="lg:col-span-1">
-                <div className="sticky top-24 bg-white border border-light-green rounded-xl p-6 shadow-soft">
+                <div className="sticky top-24 bg-white/10 backdrop-blur-sm border border-light-green rounded-xl p-6 shadow-soft">
                   <h3 className="text-xl font-bold text-dark-blue mb-4">Categories</h3>
                   <ul className="space-y-2">
                     <li>
@@ -203,7 +234,7 @@ const ServicesPage = () => {
                   {filteredServices.map((service, index) => (
                     <div 
                       key={index} 
-                      className={`group relative bg-white border border-light-green rounded-xl p-6 shadow-soft transition-all duration-500 hover:-translate-y-2 hover:shadow-lg cursor-pointer ${expandedCard === index ? 'col-span-2' : ''} animate-fade-in`}
+                      className={`group relative bg-white/10 backdrop-blur-sm border border-light-green rounded-xl p-6 shadow-soft transition-all duration-500 hover:-translate-y-2 hover:shadow-lg cursor-pointer ${expandedCard === index ? 'col-span-2' : ''} animate-fade-in`}
                       style={{ animationDelay: `${index * 0.12}s` }}
                       onClick={() => setExpandedCard(expandedCard === index ? null : index)}
                     >
