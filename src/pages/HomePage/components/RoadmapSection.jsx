@@ -3,31 +3,31 @@ import { Link } from 'react-router-dom';
 
 const processSteps = [
   {
-    icon: '🔍',
+   
     title: 'Discovery & Understanding',
     description: 'We start by thoroughly understanding your needs, functional requirements, and industry standards.',
     takeaway: 'Clear, detailed requirements ensure we build exactly what you need, no surprises.'
   },
   {
-    icon: '🎨',
+    
     title: 'Concept Design & Benchmarking',
     description: 'Our team benchmarks competitor products and creates innovative design concepts tailored to your application.',
     takeaway: 'We focus on delivering solutions that are efficient, cost-effective, and performance-driven.'
   },
   {
-    icon: '📦',
+    
     title: 'Rapid Prototyping',
     description: 'We rapidly develop functional prototypes to validate design concepts and performance early in the process.',
     takeaway: 'This accelerates development cycles and minimizes risk of costly errors.'
   },
   {
-    icon: '🔬',
+    
     title: 'Rigorous Testing & Optimization',
     description: 'Comprehensive testing ensures your motor performs reliably under real-world conditions, meeting all industry standards.',
     takeaway: 'You get robust, fully validated solutions optimized for performance and durability.'
   },
   {
-    icon: '🚀',
+   
     title: 'Final Delivery & Production Support',
     description: 'We deliver fully tested prototypes along with complete documentation and support your production ramp-up.',
     takeaway: 'Seamless handover with ongoing support helps you go to market faster with confidence.'
