@@ -36,7 +36,8 @@ const processSteps = [
 
 const whyWorkWithUs = [
   'Proven end-to-end expertise in electric motor simulation, design, prototyping, and testing',
-  'Transparent development process with clear responsibilities'
+  'Transparent development process with clear responsibilities',
+  'Tailored solutions that maximize reliability, efficiency, and cost-effectiveness.'
 ];
 
 const AnimatedItem = ({ children, delay = 0, className = '' }) => {
@@ -47,7 +48,8 @@ const AnimatedItem = ({ children, delay = 0, className = '' }) => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    element.classList.add('in-view');
+                    element.classList.remove('opacity-0', 'translate-y-8', 'scale-95');
+                    element.classList.add('opacity-100', 'translate-y-0', 'scale-100');
                     observer.unobserve(element);
                 }
             });
@@ -59,7 +61,7 @@ const AnimatedItem = ({ children, delay = 0, className = '' }) => {
     return (
         <div 
             ref={ref} 
-            className={`opacity-0 transform translate-y-8 transition-all duration-700 ease-out ${className}`}
+            className={`opacity-0 transform translate-y-8 scale-95 transition-all duration-700 ease-out ${className}`}
             style={{ transitionDelay: `${delay}s` }}
         >
             {children}
@@ -168,13 +170,13 @@ const RoadmapSection = () => {
           </div>
 
           <AnimatedItem delay={0.5} className="w-full">
-            <div className="mt-16 max-w-4xl mx-auto card p-8 rounded-xl shadow-xl border border-border">
-              <h3 className="text-2xl font-bold text-foreground mb-6 text-center text-shadow-custom">✅ Why Work With Us?</h3>
-              <ul className="space-y-4">
+            <div className="mt-16 max-w-5xl mx-auto p-8 rounded-2xl shadow-2xl border border-light-green/50 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md">
+              <h3 className="text-3xl font-extrabold text-gray-900 mb-8 text-center text-shadow-custom">✅ Why Work With Us?</h3>
+              <ul className="space-y-6">
                   {whyWorkWithUs.map((item, index) => (
-                      <li key={index} className="flex items-center p-4 bg-card rounded-lg shadow-sm hover:bg-white/20 transition-all duration-200">
-                          <span className="text-primary-green font-bold text-2xl mr-4">✔️</span>
-                          <span className="text-muted-foreground text-base flex-1">{item}</span>
+                      <li key={index} className="flex items-center p-5 bg-white/5 rounded-xl shadow-md border border-transparent hover:border-light-green/50 hover:bg-white/10 transition-all duration-300">
+                          <span className="text-green-600 font-extrabold text-3xl mr-4">✔️</span>
+                          <span className="text-gray-800 text-lg flex-1">{item}</span>
                       </li>
                   ))}
               </ul>
